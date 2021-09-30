@@ -2,7 +2,7 @@
 
 User Story
 
-AS a Historian I WANT to see the history events that happened for specific date as well movies related for the event SO THAT I can plan a learn more about history
+AS a Historian I WANT to see the history events that happened for specific date as well movies related for the event SO THAT I can learn more about history
 
 Acceptance Criteria
 
