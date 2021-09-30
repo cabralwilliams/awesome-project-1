@@ -11,6 +11,8 @@ The application will show on initial load a featured event for that day and then
 
 The website is published at 
 
+![image](https://user-images.githubusercontent.com/88918693/135539713-035a84e6-8ad4-400b-8509-d4f594f377e5.png)
+
 Built With HTML, CSS, Foundation, Java Script, Moment.js and Jquery.
 
 We use the https://history.muffinlabs.com/date/ API to retrieve history events  for specific day. We also use localStorage to store user manual searches.
