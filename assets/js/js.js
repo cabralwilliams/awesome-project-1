@@ -12,6 +12,10 @@ var formSubmitHandler = function(event) {
          
 };
 
+//Api urls, keys, and general search information
+//History api usage: historyUrl + "9/29" -> would search for notable people events of September 29
+var historyUrl = "http://history.muffinlabs.com/date/";
+
 //load city to get latitud and longitud to be able to display 5 days 
 var getcity = function(city) {
   // format the weather api url by city
