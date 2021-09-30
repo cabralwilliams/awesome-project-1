@@ -1,56 +1,70 @@
-var dia = moment().format("l");
 
-//load page first time
-var loadpage = function () {};
+var dia=moment().format('M/D');  //todays date mm/dd
+var DayButtonsEl = document.querySelector("#day-button");
 
-//submit botton
-var formSubmitHandler = function (event) {
-	// prevent page from refreshing
-	event.preventDefault();
-	// get value from input element
+//load page first time-get history with today data
+var loadpage=function(){
+  gethistory(dia);
+}
+
+//capture click on any buttons for any hiostory events 
+var formSubmitHandler = function(event) {
+      // prevent page from refreshing
+      event.preventDefault();
+      // get value from input element and load another page with movies, books etc.
+         
 };
-//When user clicks on search date funciton , open date picker modal box -Sonali
-//Api urls, keys, and general search information
-//History api usage: historyUrl + "9/29" -> would search for notable people events of September 29
-var historyUrl = "http://history.muffinlabs.com/date/";
 
-//load city to get latitud and longitud to be able to display 5 days
-var getcity = function (city) {
-	// format the weather api url by city
-	var apiUrl = "https://api.openweathermap.org/data/2.5/weather?";
-	// make a get request to url
-	fetch(apiUrl)
-		.then(function (response) {
-			// request was successful
-			if (response.ok) {
-				response.json().then(function (data) {});
-			} else {
-				//api response returned errors
-				alert("Error: " + response.statusText);
-			}
-		})
-		.catch(function (error) {
-			alert("Unable to connect to Weather Web site");
-		});
+
+//load history for a specific day of the year
+var gethistory = function(dateEl) {
+  // format the weather api url by city
+  var apiUrl=  "https://history.muffinlabs.com/date/"+dateEl;
+  // make a get request to url
+  fetch(apiUrl)
+    .then(function(response) {
+      // request was successful
+      if (response.ok) {
+          response.json().then(function(data) {
+          console.log(data);
+          //call function to display data on screen
+      });
+      } else { //api response returned errors
+        alert("Error: " + response.statusText);
+      }
+    })
+    .catch(function(error) {
+      alert("Unable to connect to Weather Web site");
+    });
+
+
 };
+
+//launch date picker---sonali
+var dayClickHandler=function(){
+  alert("you push button for day picker");
+}
 
 //save array to local storage
 
-//using lat and lon, get all info for current day and next 5 days
-var getmoredetails = function () {
-	// format the github api url
-	var apiUrl = "https://api.openweathermap.org/data/2.5/onecall";
-	// make a get request to url
-	fetch(apiUrl).then(function (response) {
-		// request was successful
-		if (response.ok) {
-			response.json().then(function (data) {
-				console.log(data);
-			});
-		} else {
-			alert("Error: " + response.statusText);
-		}
-	});
+
+
+//using for second search
+var getmoredetails = function() {
+  // format the github api url
+  var apiUrl= "https://api.openweathermap.org/data/2.5/onecall";
+  // make a get request to url
+  fetch(apiUrl).then(function(response) {
+    // request was successful
+    if (response.ok) {
+      response.json().then(function(data) {
+        console.log(data);
+        });
+    } else {
+      alert("Error: " + response.statusText);
+    }
+  });
+
 };
 
 //create buttons and save new data on array
@@ -59,4 +73,8 @@ var getmoredetails = function () {
 
 // add event listeners to form and button container
 
+DayButtonsEl.addEventListener("click", dayClickHandler);
+
 // load for the first time
+loadpage();
+
