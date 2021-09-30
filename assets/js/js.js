@@ -1,34 +1,33 @@
-var dia=moment().format('l');
+var dia=moment().format('M/D');  //todays date mm/dd
+var DayButtonsEl = document.querySelector("#day-button");
 
-//load page first time
+//load page first time-get history with today data
 var loadpage=function(){
+  gethistory(dia);
 }
 
-//submit botton 
+//capture click on any buttons for any hiostory events 
 var formSubmitHandler = function(event) {
       // prevent page from refreshing
       event.preventDefault();
-      // get value from input element
+      // get value from input element and load another page with movies, books etc.
          
 };
 
-//Api urls, keys, and general search information
-//History api usage: historyUrl + "9/29" -> would search for notable people events of September 29
-var historyUrl = "http://history.muffinlabs.com/date/";
 
-//load city to get latitud and longitud to be able to display 5 days 
-var getcity = function(city) {
+//load history for a specific day of the year
+var gethistory = function(dateEl) {
   // format the weather api url by city
-  var apiUrl=  "https://api.openweathermap.org/data/2.5/weather?"
+  var apiUrl=  "https://history.muffinlabs.com/date/"+dateEl;
   // make a get request to url
   fetch(apiUrl)
     .then(function(response) {
       // request was successful
       if (response.ok) {
           response.json().then(function(data) {
-          
-          
-        });
+          console.log(data);
+          //call function to display data on screen
+      });
       } else { //api response returned errors
         alert("Error: " + response.statusText);
       }
@@ -38,10 +37,15 @@ var getcity = function(city) {
     });
 };
 
+//launch date picker---sonali
+var dayClickHandler=function(){
+  alert("you push button for day picker");
+}
+
 //save array to local storage
 
 
-//using lat and lon, get all info for current day and next 5 days
+//using for second search
 var getmoredetails = function() {
   // format the github api url
   var apiUrl= "https://api.openweathermap.org/data/2.5/onecall";
@@ -63,7 +67,7 @@ var getmoredetails = function() {
 //load data from previously saved data
 
 // add event listeners to form and button container
-
+DayButtonsEl.addEventListener("click", dayClickHandler);
 
 // load for the first time
-
+loadpage();
