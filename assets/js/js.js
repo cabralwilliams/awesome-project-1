@@ -1,3 +1,4 @@
+
 var dia=moment().format('M/D');  //todays date mm/dd
 var DayButtonsEl = document.querySelector("#day-button");
 
@@ -35,6 +36,8 @@ var gethistory = function(dateEl) {
     .catch(function(error) {
       alert("Unable to connect to Weather Web site");
     });
+
+
 };
 
 //launch date picker---sonali
@@ -43,6 +46,7 @@ var dayClickHandler=function(){
 }
 
 //save array to local storage
+
 
 
 //using for second search
@@ -60,14 +64,17 @@ var getmoredetails = function() {
       alert("Error: " + response.statusText);
     }
   });
+
 };
 
-//create buttons and save new data on array 
+//create buttons and save new data on array
 
 //load data from previously saved data
 
 // add event listeners to form and button container
+
 DayButtonsEl.addEventListener("click", dayClickHandler);
 
 // load for the first time
 loadpage();
+
