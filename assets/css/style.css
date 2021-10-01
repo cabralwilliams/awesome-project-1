@@ -26,3 +26,7 @@ body {
 	border-radius: var(--border-radius);
 	margin: 5px auto;
 }
+
+.view-history-button {
+	padding: 10px;
+}

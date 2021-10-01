@@ -19,6 +19,11 @@
 			rel="stylesheet"
 			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css"
 		/>
+		<!--jQuery widgets Stylesheet-->
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css"
+		/>
 		<link rel="stylesheet" href="./assets/css/style.css" />
 		<title>Discovery History</title>
 	</head>
@@ -99,29 +104,44 @@
 				</button>
 			</div>
 		</div>
-		<!--MODAL FOR DATE PICKER-->
-		<!-- <button id="day-button" data-open="exampleModal1" class="btn">
-			Search for a Day
-		</button> -->
 
 		<div class="reveal" id="dayModal" data-reveal>
-			<form>
-				<div class="grid-container">
-					<div class="grid-x grid-padding-x">
-						<div class="small-12 cell">
-							<label for="select-date"
-								>Select the date to view day in the history</label
-							>
-							<input type="text" id="select-date" />
-						</div>
-						<div class="small-12 cell text-center">
-							<button type="button" class="success button rounded-button">
-								Save
-							</button>
+			<div class="grid-container fluid">
+				<div class="grid-x grid-margin-x fluid">
+					<div class="large-2 medium-12 small-12"></div>
+					<div class="large-8 medium-12 small-12 cell callout form-section">
+						<div class="grid-x grid-padding-x">
+							<div class="large-12 medium-12 small-12 text-center header">
+								<h4>Select Date</h4>
+							</div>
+							<div class="large-12 columns cell">
+								<form>
+									<div class="grid-x grid-padding-x">
+										<div class="large-12 medium-12 cell ui-widget">
+											<input type="text" id="select-date" />
+										</div>
+										<div class="large-12 medium-12 cell text-right"></div>
+										<div class="large-12 medium-12 cell text-center">
+											<button
+												class="
+													button
+													primary
+													login-btn
+													rounded-button
+													view-history-button
+												"
+											>
+												View History
+											</button>
+										</div>
+									</div>
+								</form>
+							</div>
 						</div>
 					</div>
+					<div class="large-2 medium-12 small-12"></div>
 				</div>
-			</form>
+			</div>
 			<button
 				class="close-button"
 				data-close
