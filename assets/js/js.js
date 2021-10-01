@@ -27,9 +27,12 @@ var gethistory = function (dateEl) {
 			if (response.ok) {
 				response.json().then(function (data) {
 					console.log(data);
-					//0 will be replace with random # for the array
-					intro.textContent="On "+data.date+","+data.data.Events[0].year+": "+data.data.Events[0].links[0].title;
-					description.textContent=data.data.Events[0].text;
+					//display data as buttons
+					var allSearches = data.data.Events; //get only array events
+					var l= Math.floor(Math.random() * ((allSearches.length-1) - 0 + 1)) + 0;
+					line.textContent="It Happened on "+data.date;
+					intro.textContent="On "+data.date+","+data.data.Events[l].year+": "+data.data.Events[l].links[0].title;
+					description.textContent=data.data.Events[l].text;
 					//Needed to activate accordion on Jquery
 					$( function() {
 						var icons = {
@@ -37,32 +40,39 @@ var gethistory = function (dateEl) {
 						activeHeader: "ui-icon-circle-arrow-s"
 						};
 						$( "#accordion" ).accordion({
-						icons: icons
-						});
-						$( "#accordion" ).accordion({
 							collapsible: true,
-							heightStyle: "content"
+							heightStyle: "fill",
+							icons: icons
 						});
 					})
-					//display data as buttons
-					var allSearches = data.data.Events;
 					//loop over array to recreate search for that day on the webpage
 					$.each(allSearches, function(index,allSearches){
-						//recreate buttons for each city
-						var sectionEl = document.createElement('h3');
-						sectionEl.textContent =" Year: "+data.data.Events[index].year+": "+data.data.Events[index].links[0].title ;
-						//button.className = 'button cell small-12 rounded-button';
-						sectionEl.setAttribute("data-title", data.data.Events[index].links[0].title);
-						sectionEl.setAttribute("data-year", data.data.Events[index].year);
-						sectionEl.setAttribute("data-descr", data.data.Events[index].text);
-						var DivEl=document.createElement('div');
-						var pEl=document.createElement('p');
-						pEl.textContent=data.data.Events[index].text;
-						DivEl.appendChild(pEl);
-						var container = document.getElementById("accordion");
-						container.appendChild(sectionEl);
-						container.appendChild(DivEl);
-					});
+						if (index !== l){ 
+							//create entries for each event
+							var sectionEl = document.createElement('h3');
+							sectionEl.textContent =" Year: "+data.data.Events[index].year+": "+data.data.Events[index].links[0].title ;
+							sectionEl.setAttribute("data-title", data.data.Events[index].links[0].title);
+							sectionEl.setAttribute("data-year", data.data.Events[index].year);
+							sectionEl.setAttribute("data-descr", data.data.Events[index].text);
+							var DivEl=document.createElement('div');
+							var pEl=document.createElement('p');
+							var buttonEl=document.createElement('button')
+							buttonEl.className = 'button alert card-section rounded-button';
+							buttonEl.setAttribute("btn-type","save");
+							buttonEl.textContent="Save Search";
+							var LbuttonEl=document.createElement('button')
+							LbuttonEl.className = 'button alert card-section rounded-button';
+							LbuttonEl.setAttribute("btn-type","learn");
+							LbuttonEl.textContent="Learn More";
+							pEl.textContent=data.data.Events[index].text;
+							DivEl.appendChild(pEl);
+							DivEl.appendChild(buttonEl);
+							DivEl.appendChild(LbuttonEl);
+							var container = document.getElementById("accordion");
+							container.appendChild(sectionEl);
+							container.appendChild(DivEl);
+						}
+     				});
 				});
 			} else {
 				//api response returned errors
@@ -74,11 +84,10 @@ var gethistory = function (dateEl) {
 		});
 };
 
-//launch date picker---sonali
 
 //save array to local storage
 var savesearches = function() {
-	localStorage.setItem("cities", JSON.stringify(searches));
+	localStorage.setItem("searches", JSON.stringify(searches));
 };
 
 //using for second search
@@ -142,7 +151,6 @@ var getmoredetails = function (searchTerm) {
 
 // load for the first time
 $(document).ready(function () {
-
 	$("#select-date").datepicker({
 		duration: "fast",
 		showAnim: "slideDown",
@@ -153,9 +161,14 @@ $(document).ready(function () {
 		var selectedDate = $("#select-date").val();
 		var selectedDateM = moment(selectedDate, "M/D/YYYY");
 		var cday = selectedDateM.format("M/D");
+		//remove elements from accordion so next date would be properly display
+		$( ".accordion" ).accordion( "destroy" );
+		$( ".ui-accordion-header" ).remove();
+		$( ".ui-accordion-content" ).remove();
 		gethistory(cday);
 	});
 	//Let's load todays events
 	loadpage();
 });
+
 
