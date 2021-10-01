@@ -1,11 +1,8 @@
 var dia = moment().format("M/D"); //todays date mm/dd
 var DayButtonsEl = document.querySelector("#day-button");
-$(document).foundation();
+$(document).foundation();   //initialize foundation framework
 //load page first time-get history with today data
 var loadpage = function () {
-	$("#select-date").datepicker({
-		minDate: 1,
-	});
 	gethistory(dia);
 };
 
@@ -69,4 +66,12 @@ var getmoredetails = function () {
 //DayButtonsEl.addEventListener("click", dayClickHandler);
 
 // load for the first time
-loadpage();
+
+$(document).ready(function () {
+	$("#select-date").datepicker({
+		duration: "fast",
+		showAnim: "drop",
+		showOptions: { direction: "up" },
+	});
+	loadpage();
+});
