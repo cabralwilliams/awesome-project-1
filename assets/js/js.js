@@ -84,11 +84,46 @@ var savesearches = function() {
 };
 
 //using for second search
-var getmoredetails = function () {
+var getmoredetails = function (searchTerm) {
 	// format the github api url
-	var apiUrl = "https://api.openweathermap.org/data/2.5/onecall";
+	var omdbURL = "http://www.omdbapi.com/?s=" + searchTerm + "&apikey=a6a19b04";
+	var bookURL = "http://openlibrary.org/search.json?q=" + searchTerm;
 	// make a get request to url
-	fetch(apiUrl).then(function (response) {
+	// function to process the data
+	var getMovieCard = function(movieData) {
+		var m_imdbID = movieData.imdbID;
+		var m_Title = movieData.Title;
+		var m_Year = movieData.Year;
+		var m_Type = movieData.Type;
+		var movieCard = document.createElement("div");
+		movieCard.className = "card cell";
+		var titleH = document.createElement("h3");
+		titleH.className = "card-divider";
+		titleH.textContent = m_Title;
+		var detailDiv1 = document.createElement("div");
+		detailDiv1.className = "card-section";
+		detailDiv1.textContent = m_Year + " " + m_Type.charAt(0).toUpperCase() + m_Tipe.slice(1);
+		var linkDiv = document.createElement("div");
+		linkDiv.className = "card-section";
+		var linkAnchor = document.createElement("a");
+		linkAnchor.href = "https://www.imdb.com/title/" + m_imdbID;
+		linkAnchor.textContent = "IMDB Page";
+		movieCard.append(titq,detailDiv1,linkDiv);
+		return movieCard;
+	};
+	fetch(omdbURL).then(function (response) {
+		// request was successful
+		if (response.ok) {
+			response.json().then(function (data) {
+				console.log(data);
+				console.log(Object.keys(data));
+			});
+		} else {
+			alert("Error: " + response.statusText);
+		}
+	});
+	/*
+	fetch(bookURL).then(function (response) {
 		// request was successful
 		if (response.ok) {
 			response.json().then(function (data) {
@@ -98,6 +133,7 @@ var getmoredetails = function () {
 			alert("Error: " + response.statusText);
 		}
 	});
+	*/
 };
 
 //create buttons and save new data on array
