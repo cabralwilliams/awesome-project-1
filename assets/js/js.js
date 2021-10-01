@@ -32,7 +32,7 @@ var gethistory = function (dateEl) {
 			}
 		})
 		.catch(function (error) {
-			alert("Unable to connect to Weather Web site");
+			alert("Unable to connect to history.muffinlabs.com/date/ API");
 		});
 };
 
@@ -73,6 +73,13 @@ $(document).ready(function () {
 		showAnim: "slideDown",
 		showOptions: { direction: "up" },
 	});
-	
-	loadpage();
+	$(".view-history-button").on("click", function (event) {
+		event.preventDefault();
+		var selectedDate = $("#select-date").val();
+		var selectedDateM = moment(selectedDate, "M/D/YYYY");
+		dia = selectedDateM.format("M/D");
+		//		alert(dia);
+		gethistory(dia);
+	});
+	//	loadpage();
 });
