@@ -1,80 +1,141 @@
 <!DOCTYPE html>
 <html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+		<!--Foundation Stylesheet-->
+		<link
+			rel="stylesheet"
+			href="https://cdn.jsdelivr.net/npm/foundation-sites@6.6.3/dist/css/foundation.min.css"
+			integrity="sha256-ogmFxjqiTMnZhxCqVmcqTvjfe1Y/ec4WaRj/aQPvn+I="
+			crossorigin="anonymous"
+		/>
+		<link
+			href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans:400,400i,700&display=swap"
+			rel="stylesheet"
+		/>
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css"
+		/>
+		<link rel="stylesheet" href="./assets/css/style.css" />
+		<title>Discovery History</title>
+	</head>
+	<body>
+		<div class="grid-x grid-margin-x">
+			<h2 class="grid-container fluid">Discover History</h2>
+		</div>
+		<div class="grid-x grid-margin-x">
+			<div class="cell small-12 medium-7">
+				<div class="card callout success">
+					<h3 class="card-divider">Did You Know?</h3>
+					<p class="card-section">
+						On September 30, 19XX: Some important event that happened on the
+						specific search date.
+					</p>
+					<div class="card-section">
+						Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nobis
+						expedita quaerat consequatur vel corrupti architecto a quam
+						provident nemo! Labore natus, eligendi fugit dignissimos eius
+						aliquam ducimus aliquid! Qui, soluta.
+					</div>
+					<button class="button alert card-section" type="button">
+						Learn More!
+					</button>
+				</div>
+			</div>
+			<div class="cell small-12 medium-5">
+				<div class="card callout secondary">
+					<h3 class="card-divider">It Happened Today!</h3>
+					<div class="card-section grid-x grid-margin-x">
+						<button class="button cell small-12" type="button">
+							Learn more about - Event/Birth 1
+						</button>
+						<button class="button cell small-12" type="button">
+							Learn more about - Event/Birth 2
+						</button>
+						<button class="button cell small-12" type="button">
+							Learn more about - Event/Birth 3
+						</button>
+						<button class="button cell small-12" type="button">
+							Learn more about - Event/Birth 4
+						</button>
+						<button class="button cell small-12 alert" type="button">
+							Next Page
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="grid-x grid-margin-x">
+			<button
+				class="button success grid-container fluid"
+				type="button"
+				data-open="dayModal"
+			>
+				<h3>Search A Day! - Not Active Currently</h3>
+			</button>
+		</div>
+		<div class="grid-x grid-margin-x">
+			<div class="cell small-12 medium-4 large-3 grid-x grid-margin-x">
+				<button class="button success cell small-12" type="button">
+					Independence Day (July 4)
+				</button>
+			</div>
+			<div class="cell small-12 medium-4 large-3 grid-x grid-margin-x">
+				<button class="button alert cell small-12" type="button">
+					Christmas (December 25)
+				</button>
+			</div>
+		</div>
+		<!--MODAL FOR DATE PICKER-->
+		<!-- <button id="day-button" data-open="exampleModal1" class="btn">
+			Search for a Day
+		</button> -->
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <!--Foundation Stylesheet-->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/foundation-sites@6.6.3/dist/css/foundation.min.css" integrity="sha256-ogmFxjqiTMnZhxCqVmcqTvjfe1Y/ec4WaRj/aQPvn+I=" crossorigin="anonymous">
-  <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans:400,400i,700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
-  <link rel="stylesheet" href="./assets/css/style.css" />
-  <title>Discovery History</title>
-</head>
-<body>
-  <div class="grid-x grid-margin-x">
-    <h2 class="grid-container fluid">Discover History</h2>
-  </div>
-  <div class="grid-x grid-margin-x">
-    <div class="cell small-12 medium-7">
-      <div class="card callout success">
-        <h3 class="card-divider">
-          Did You Know?
-        </h3>
-        <p class="card-section">
-          On September 30, 19XX: Some important event that happened on the specific search date.
-        </p>
-        <div class="card-section">
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nobis expedita quaerat consequatur vel corrupti architecto a quam provident nemo! Labore natus, eligendi fugit dignissimos eius aliquam ducimus aliquid! Qui, soluta.
-        </div>
-        <button class="button alert card-section" type="button">Learn More!</button>
-      </div>
-    </div>
-    <div class="cell small-12 medium-5">
-      <div class="card callout secondary">
-        <h3 class="card-divider">
-          It Happened Today!
-        </h3>
-        <div class="card-section grid-x grid-margin-x">
-          <button class="button cell small-12" type="button">
-            Learn more about - Event/Birth 1
-          </button>
-          <button class="button cell small-12" type="button">
-            Learn more about - Event/Birth 2
-          </button>
-          <button class="button cell small-12" type="button">
-            Learn more about - Event/Birth 3
-          </button>
-          <button class="button cell small-12" type="button">
-            Learn more about - Event/Birth 4
-          </button>
-          <button class="button cell small-12 alert" type="button">
-            Next Page
-          </button>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="grid-x grid-margin-x">
-    <button class="button success grid-container fluid" type="button" data-open="dayModal"><h3>Search A Day! - Not Active Currently</h3></button>
-  </div>
-  <div class="grid-x grid-margin-x">
-    <div class="cell small-12 medium-4 large-3 grid-x grid-margin-x">
-      <button class="button success cell small-12" type="button">Independence Day (July 4)</button>
-    </div>
-    <div class="cell small-12 medium-4 large-3 grid-x grid-margin-x">
-      <button class="button alert cell small-12" type="button">Christmas (December 25)</button>
-    </div>
-  </div> 
-  <!--button for day picker-->
-  <button id="day-button" class="btn">Search for a Day</button>
+		<div class="reveal" id="dayModal" data-reveal>
+			<form>
+				<div class="grid-container">
+					<div class="grid-x grid-padding-x">
+						<div class="small-12 cell">
+							<label for="select-date"
+								>Select the date to view day in the history</label
+							>
+							<input type="text" id="select-date" />
+						</div>
+						<div class="small-12 cell text-center">
+							<button type="button" class="success button rounded-button">
+								Save
+							</button>
+						</div>
+					</div>
+				</div>
+			</form>
+			<button
+				class="close-button"
+				data-close
+				aria-label="Close modal"
+				type="button"
+			>
+				<span aria-hidden="true">&times;</span>
+			</button>
+		</div>
 
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-  <!--Foundation JavaScript-->
-  <script src="https://cdn.jsdelivr.net/npm/foundation-sites@6.6.3/dist/js/foundation.min.js" integrity="sha256-pRF3zifJRA9jXGv++b06qwtSqX1byFQOLjqa2PTEb2o=" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
-  <script src="./assets/js/js.js"></script>
-</body>
-
+		<script
+			src="https://code.jquery.com/jquery-3.6.0.min.js"
+			integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+			crossorigin="anonymous"
+		></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>
+		<!--Foundation JavaScript-->
+		<script
+			src="https://cdn.jsdelivr.net/npm/foundation-sites@6.6.3/dist/js/foundation.min.js"
+			integrity="sha256-pRF3zifJRA9jXGv++b06qwtSqX1byFQOLjqa2PTEb2o="
+			crossorigin="anonymous"
+		></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+		<script src="./assets/js/js.js"></script>
+	</body>
 </html>
