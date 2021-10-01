@@ -1,8 +1,10 @@
 var dia = moment().format("M/D"); //todays date mm/dd
-searches=[];  //array to save user searches
+
+var searches=[];  //array to save user searches
 
 
 $(document).foundation();   //initialize foundation framework
+
 //load page first time-get history with today data
 var loadpage = function () {
 	searches = [];  //initialize array
@@ -70,7 +72,7 @@ var gethistory = function (dateEl) {
 			}
 		})
 		.catch(function (error) {
-			alert("Unable to connect to Weather Web site");
+			alert("Unable to connect to history.muffinlabs.com/date/ API");
 		});
 };
 
@@ -106,13 +108,21 @@ var getmoredetails = function () {
 
 // load for the first time
 $(document).ready(function () {
-		$("#select-date").datepicker({
-			duration: "fast",
-			showAnim: "drop",
-			showOptions: { direction: "up" },
-		});
-	
-	  
-	loadpage();
+
+	$("#select-date").datepicker({
+		duration: "fast",
+		showAnim: "slideDown",
+		showOptions: { direction: "up" },
+	});
+	$(".view-history-button").on("click", function (event) {
+		event.preventDefault();
+		var selectedDate = $("#select-date").val();
+		var selectedDateM = moment(selectedDate, "M/D/YYYY");
+		dia = selectedDateM.format("M/D");
+		//		alert(dia);
+		gethistory(dia);
+	});
+	//	loadpage();
+
 });
 
