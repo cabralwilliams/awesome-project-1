@@ -40,7 +40,8 @@ var gethistory = function (dateEl) {
 						icons: icons
 						});
 						$( "#accordion" ).accordion({
-							collapsible: true
+							collapsible: true,
+							heightStyle: "content"
 						});
 					})
 					//display data as buttons
