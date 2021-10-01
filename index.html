@@ -19,11 +19,11 @@
 			rel="stylesheet"
 			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css"
 		/>
-		<!--jQuery widgets Stylesheet-->
-		<link
-			rel="stylesheet"
-			href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css"
-		/>
+
+		<!--Jquery stylesheet-->
+		<link rel="stylesheet" href="./assets/css/jquery-ui.css">
+		<!--our pesonal stylesheet-->
+
 		<link rel="stylesheet" href="./assets/css/style.css" />
 		<title>Discovery History</title>
 	</head>
@@ -35,15 +35,11 @@
 			<div class="cell small-12 medium-7">
 				<div class="card callout success">
 					<h3 class="card-divider">Did You Know?</h3>
-					<p class="card-section">
-						On September 30, 19XX: Some important event that happened on the
-						specific search date.
+					<p class="card-section" id="intro">
+						<!--Insert date of event + title using js-->
 					</p>
-					<div class="card-section">
-						Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nobis
-						expedita quaerat consequatur vel corrupti architecto a quam
-						provident nemo! Labore natus, eligendi fugit dignissimos eius
-						aliquam ducimus aliquid! Qui, soluta.
+					<div class="card-section" id="description" >
+						<!--Insert description  of event using js-->
 					</div>
 					<button
 						class="button alert card-section rounded-button"
@@ -56,27 +52,9 @@
 			<div class="cell small-12 medium-5">
 				<div class="card callout secondary">
 					<h3 class="card-divider">It Happened Today!</h3>
-					<div class="card-section grid-x grid-margin-x">
-						<button class="button cell small-12 rounded-button" type="button">
-							Learn more about - Event/Birth 1
-						</button>
-						<button class="button cell small-12 rounded-button" type="button">
-							Learn more about - Event/Birth 2
-						</button>
-						<button class="button cell small-12 rounded-button" type="button">
-							Learn more about - Event/Birth 3
-						</button>
-						<button class="button cell small-12 rounded-button" type="button">
-							Learn more about - Event/Birth 4
-						</button>
-						<button
-							class="button cell small-12 alert rounded-button"
-							type="button"
-						>
-							Next Page
-						</button>
+					<div id="accordion">
+							<!--insert by Js all searched events-->
 					</div>
-				</div>
 			</div>
 		</div>
 		<div class="grid-x grid-margin-x">
@@ -104,7 +82,6 @@
 				</button>
 			</div>
 		</div>
-
 		<div class="reveal" id="dayModal" data-reveal>
 			<div class="grid-container fluid">
 				<div class="grid-x grid-margin-x fluid">
@@ -165,6 +142,7 @@
 			integrity="sha256-pRF3zifJRA9jXGv++b06qwtSqX1byFQOLjqa2PTEb2o="
 			crossorigin="anonymous"
 		></script>
+		<!--use moment.js- to work with dates-->
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
 		<script src="./assets/js/js.js"></script>
 	</body>
