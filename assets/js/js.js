@@ -1,9 +1,7 @@
 var dia = moment().format("M/D"); //todays date mm/dd
-
 var searches=[];  //array to save user searches
-
-
 $(document).foundation();   //initialize foundation framework
+
 
 //load page first time-get history with today data
 var loadpage = function () {
@@ -154,11 +152,10 @@ $(document).ready(function () {
 		event.preventDefault();
 		var selectedDate = $("#select-date").val();
 		var selectedDateM = moment(selectedDate, "M/D/YYYY");
-		dia = selectedDateM.format("M/D");
-		//		alert(dia);
-		gethistory(dia);
+		var cday = selectedDateM.format("M/D");
+		gethistory(cday);
 	});
-	//	loadpage();
-
+	//Let's load todays events
+	loadpage();
 });
 
