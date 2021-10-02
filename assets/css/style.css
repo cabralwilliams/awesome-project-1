@@ -62,7 +62,8 @@ body {
 	background-color: var(--redwine);
 }
 
-.footer-menu li a {
+.footer-menu li a,
+.footer-menu li span {
 	color: white;
 	font-weight: bold;
 }
