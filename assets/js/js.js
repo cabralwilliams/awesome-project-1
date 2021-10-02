@@ -1,20 +1,78 @@
 var dia = moment().format("M/D"); //todays date mm/dd
 var searches=[];  //array to save user searches
-$(document).foundation();   //initialize foundation framework
+//var for event listerner
+SButtonsEl= document.querySelector("#accordion")
+//initialize foundation framework
+$(document).foundation();   
 
 
-//load page first time-get history with today data
+//load page first time-get history with today's data
 var loadpage = function () {
 	searches = [];  //initialize array
+	// read from local storage
+	searches = JSON.parse(localStorage.getItem("searches"));
+	if (searches){ //if a search has been saved on local storage then 
+		//loop over array to recreate saved searches buttons on the webpage
+		$.each(searches, function(index,searches){
+			//recreate buttons for each event
+			var button = document.createElement('button');
+			button.type = 'button';
+			button.textContent = searches.title;
+			button.className = 'button success cell small-12 rounded-button'
+			button.setAttribute("data-title", searches.title);
+			button.setAttribute("data-year", searches.year);
+			var container = document.getElementById('save-btns');
+			container.appendChild(button);
+		});
+	}
 	gethistory(dia); //use to display data for today's date
 };
 
-//capture click on any buttons for any hiostory events
-var formSubmitHandler = function (event) {
-	// prevent page from refreshing
+//waiting to capture answer for save buttons
+ var buttonClickHandler = function (event) {
 	event.preventDefault();
-	// get value from input element and load another page with movies, books etc.
-};
+    // get target element from event
+    var targetEl = event.target;
+	if(targetEl.getAttribute("btn-type")==="save") { //user wants to save event
+		if (!searches){  //if it is first city that is going to be added 
+            searches= [];
+			//prepare to save on local storage
+			var eventDataObj = {
+				title: targetEl.getAttribute("data-title"),
+				year: targetEl.getAttribute("data-year"),
+				description: targetEl.getAttribute("data-descr")
+			};
+			//save obj on array  
+			searches.push(eventDataObj);
+			saveSearches(); //go to save on local storage
+			//missing to create buttons
+		}
+		else{ //search on array if event already exist 
+			var index = -1;
+            for(let y=0; y < searches.length; y++){
+                    if (searches[y].title===(targetEl.getAttribute("data-title"))){
+                        index=y;
+                    };
+            };
+            if (index < 0){  //the task does not previously exist. adding new task
+                var eventDataObj = {
+					title: targetEl.getAttribute("data-title"),
+					year: targetEl.getAttribute("data-year"),
+					description: targetEl.getAttribute("data-descr")
+				};
+				//save obj on array  
+				searches.push(eventDataObj);
+				saveSearches(); //go to save on local storage
+				//missing to create buttons
+            }; 
+
+		}
+	}	
+	if(targetEl.getAttribute("btn-type")==="learn") { //user click on learn more
+		var title=targetEl.getAttribute(data-title);
+		getmoredetails(title); //Cabral calls to second page
+	}
+  };
 
 //load history for a specific day of the year
 var gethistory = function (dateEl) {
@@ -26,7 +84,6 @@ var gethistory = function (dateEl) {
 			// request was successful
 			if (response.ok) {
 				response.json().then(function (data) {
-					console.log(data);
 					//display data as buttons
 					var allSearches = data.data.Events; //get only array events
 					var l= Math.floor(Math.random() * ((allSearches.length-1) - 0 + 1)) + 0;
@@ -51,18 +108,19 @@ var gethistory = function (dateEl) {
 							//create entries for each event
 							var sectionEl = document.createElement('h3');
 							sectionEl.textContent =" Year: "+data.data.Events[index].year+": "+data.data.Events[index].links[0].title ;
-							sectionEl.setAttribute("data-title", data.data.Events[index].links[0].title);
-							sectionEl.setAttribute("data-year", data.data.Events[index].year);
-							sectionEl.setAttribute("data-descr", data.data.Events[index].text);
 							var DivEl=document.createElement('div');
 							var pEl=document.createElement('p');
 							var buttonEl=document.createElement('button')
 							buttonEl.className = 'button alert card-section rounded-button';
 							buttonEl.setAttribute("btn-type","save");
+							buttonEl.setAttribute("data-title", data.data.Events[index].links[0].title);
+							buttonEl.setAttribute("data-year", data.data.Events[index].year);
+							buttonEl.setAttribute("data-descr", data.data.Events[index].text);
 							buttonEl.textContent="Save Search";
 							var LbuttonEl=document.createElement('button')
 							LbuttonEl.className = 'button alert card-section rounded-button';
 							LbuttonEl.setAttribute("btn-type","learn");
+							LbuttonEl.setAttribute("data-title", data.data.Events[index].links[0].title);
 							LbuttonEl.textContent="Learn More";
 							pEl.textContent=data.data.Events[index].text;
 							DivEl.appendChild(pEl);
@@ -86,7 +144,7 @@ var gethistory = function (dateEl) {
 
 
 //save array to local storage
-var savesearches = function() {
+var saveSearches = function() {
 	localStorage.setItem("searches", JSON.stringify(searches));
 };
 
@@ -143,11 +201,9 @@ var getmoredetails = function (searchTerm) {
 	*/
 };
 
-//create buttons and save new data on array
-
-//load data from previously saved data
 
 // add event listeners to form and button container
+SButtonsEl.addEventListener("click", buttonClickHandler);
 
 // load for the first time
 $(document).ready(function () {
@@ -170,5 +226,3 @@ $(document).ready(function () {
 	//Let's load todays events
 	loadpage();
 });
-
-
