@@ -1,9 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html class="no-js" lang="en">
 	<head>
-		<meta charset="UTF-8" />
+		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+		<title>Foundation | Welcome</title>
+
 		<!--Foundation Stylesheet-->
 		<link
 			rel="stylesheet"
@@ -23,141 +24,304 @@
 		<!--Jquery stylesheet-->
 		<link rel="stylesheet" href="./assets/css/jquery-ui.css" />
 		<!--our pesonal stylesheet-->
-
+		<link
+			rel="stylesheet"
+			href="https://dhbhdrzi4tiry.cloudfront.net/cdn/sites/foundation.min.css"
+		/>
 		<link rel="stylesheet" href="./assets/css/style.css" />
-		<title>Discovery History</title>
 	</head>
 	<body>
-		<div class="grid-x grid-margin-x">
-			<h2 class="grid-container fluid">Discover History</h2>
+		<!-- Start Top Bar -->
+		<div class="top-bar">
+			<div class="row">
+				<div class="top-bar-left">
+					<ul class="menu" data-dropdown-menu>
+						<li class="menu-text">Discover History</li>
+						<li>
+							<a href="#">One</a>
+						</li>
+						<li><a href="#">Two</a></li>
+						<li><a href="#">Three</a></li>
+					</ul>
+				</div>
+				<div class="top-bar-right">
+					<ul class="menu">
+						<li><input type="search" placeholder="Search" /></li>
+						<li><button type="button" class="button">Search</button></li>
+					</ul>
+				</div>
+			</div>
 		</div>
-		<main class="grid-container fluid main-content">
-			<div class="grid-x grid-margin-x">
-				<div class="cell small-12 medium-7 left-grid">
-					<div
-						class="card callout success"
-						style="height: 350px; overflow: auto"
-					>
-						<h3 class="card-divider">Did You Know?</h3>
-						<p class="card-section" id="intro">
-							<!--Insert date of event + title using js-->
-						</p>
-						<div class="card-section" id="description">
-							<!--Insert description  of event using js-->
-						</div>
-						<div class="grid-x grid-margin-x">
-							<div class="cell small-4 medium-4"></div>
-							<div class="cell small-4 medium-4">
-								<button
-									class="button alert card-section rounded-button cell"
-									type="button"
-								>
-									Learn More!
-								</button>
-							</div>
-							<div class="cell small-4 medium-4"></div>
-						</div>
-					</div>
-					<!--card ends-->
-				</div>
-				<!-- left grid ends -->
-				<div
-					class="cell small-12 medium-5"
-					style="height: 350px; overflow: auto"
-				>
-					<!-- <div class="grid-container"> -->
-					<div class="grid-x">
-						<div id="container-accordion ">
-							<h3 class="card-divider" id="line">It Happened on Today!</h3>
-							<div class="accordion" id="accordion">
-								<!--insert by Js all searched events-->
-							</div>
-						</div>
-					</div>
-					<!-- </div> -->
-				</div>
-			</div>
-			<div class="grid-x grid-margin-x">
-				<div class="cell small-8"></div>
-				<div class="cell small-4">
-					<button
-						class="button success rounded-button"
-						type="button"
-						data-open="dayModal"
-						id="date-select"
-					>
-						<h5>Search A Day!</h5>
-					</button>
-				</div>
-			</div>
-		</main>
+		<!-- End Top Bar -->
+		<br />
+		<!-- You can now combine a row and column if you just need a 12 column row -->
+		<div class="row columns">
+			<nav aria-label="You are here:" role="navigation">
+				<ul class="breadcrumbs">
+					<li><a href="#">Home</a></li>
+					<li><a href="#">Features</a></li>
+					<li class="disabled">Gene Splicing</li>
+					<li><span class="show-for-sr">Current: </span> Cloning</li>
+				</ul>
+			</nav>
+		</div>
 
-		<footer class="grid-x grid-margin-x" id="save-btns">
-			<!-- <div class="cell small-12 medium-4 large-3 grid-x grid-margin-x">
-					<button
-						class="button success cell small-12 rounded-button"
-						type="button rounded-button"
-					>
-						Independence Day (July 4)
-					</button>
-				</div>
-				<div class="cell small-12 medium-4 large-3 grid-x grid-margin-x">
-					<button
-						class="button alert cell small-12 rounded-button"
-						type="button"
-					>
-						Christmas (December 25)
-					</button>
+		<div class="row">
+			<div class="medium-6 columns">
+				<!--left section -->
+				<!-- <img class="thumbnail" src="https://placehold.it/650x350" />
+				<div class="row small-up-4">
+					<div class="column">
+						<img class="thumbnail" src="https://placehold.it/250x200" />
+					</div>
+					<div class="column">
+						<img class="thumbnail" src="https://placehold.it/250x200" />
+					</div>
+					<div class="column">
+						<img class="thumbnail" src="https://placehold.it/250x200" />
+					</div>
+					<div class="column">
+						<img class="thumbnail" src="https://placehold.it/250x200" />
+					</div>
 				</div> -->
-			<ul class="menu align-center" id="bookmarks"></ul>
-		</footer>
-		<div class="reveal" id="dayModal" data-reveal>
-			<div class="grid-container fluid">
-				<div class="grid-x grid-margin-x fluid">
-					<div class="large-2 medium-12 small-12"></div>
-					<div class="large-8 medium-12 small-12 cell callout form-section">
+				<div class="card callout success" style="height: 500px; overflow: auto">
+					<h3 class="card-divider">Did You Know?</h3>
+					<p class="card-section" id="intro">
+						<!--Insert date of event + title using js-->
+					</p>
+					<div class="card-section" id="description">
+						<!--Insert description  of event using js-->
+					</div>
+					<div class="grid-x grid-margin-x">
+						<div class="cell small-4 medium-4"></div>
+						<div class="cell small-4 medium-4">
+							<button
+								class="button alert card-section rounded-button cell"
+								type="button"
+							>
+								Learn More!
+							</button>
+						</div>
+						<div class="cell small-4 medium-4"></div>
+					</div>
+					<br />
+
+					<div class="card-section callout secondary">
+						<h5>Search For Another Day</h5>
+
 						<div class="grid-x grid-padding-x">
-							<div class="large-12 medium-12 small-12 text-center header">
-								<h4>Select Date</h4>
-							</div>
-							<div class="large-12 columns cell">
-								<form>
-									<div class="grid-x grid-padding-x">
-										<div class="large-12 medium-12 cell ui-widget">
-											<input type="text" id="select-date" />
-										</div>
-										<div class="large-12 medium-12 cell text-right"></div>
-										<div class="large-12 medium-12 cell text-center">
-											<button
-												class="
-													button
-													primary
-													login-btn
-													rounded-button
-													view-history-button
-												"
-											>
-												View History
-											</button>
-										</div>
-									</div>
-								</form>
+							<div class="large-12 medium-12 cell ui-widget">
+								<ul class="menu">
+									<li>
+										<input
+											type="text"
+											id="select-date"
+											placeholder="Select Date"
+											autocomplete="off"
+										/>
+									</li>
+									<li>
+										<button
+											type="button"
+											class="button primary view-history-button"
+										>
+											View History
+										</button>
+									</li>
+								</ul>
 							</div>
 						</div>
 					</div>
-					<div class="large-2 medium-12 small-12"></div>
+				</div>
+				<!--search a day in history functionality-->
+			</div>
+			<!--left section ends -->
+			<!--right section starts -->
+			<div class="medium-6 large-5 columns">
+				<!-- <h3>My Awesome Product</h3>
+				<p>
+					Nunc eu ullamcorper orci. Quisque eget odio ac lectus vestibulum
+					faucibus eget in metus. In pellentesque faucibus vestibulum. Nulla at
+					nulla justo, eget luctus tortor. Nulla facilisi. Duis aliquet egestas
+					purus in.
+				</p> -->
+				<div class="grid-x">
+					<div id="container-accordion ">
+						<h3 class="card-divider" id="line">It Happened on Today!</h3>
+						<div class="accordion" id="accordion">
+							<!--insert by Js all searched events-->
+						</div>
+					</div>
+				</div>
+				<!-- <label
+					>Size
+					<select>
+						<option value="husker">Small</option>
+						<option value="starbuck">Medium</option>
+						<option value="hotdog">Large</option>
+						<option value="apollo">Yeti</option>
+					</select>
+				</label> -->
+
+				<!-- <div class="row">
+					<div class="small-3 columns">
+						<label for="middle-label" class="middle">Quantity</label>
+					</div>
+					<div class="small-9 columns">
+						<input
+							type="text"
+							id="middle-label"
+							placeholder="One fish two fish"
+						/>
+					</div>
+				</div> -->
+
+				<a href="#" class="button large expanded"></a>
+
+				<div class="small secondary expanded button-group" id="bookmarks"></div>
+			</div>
+			<!-- right section ends-->
+		</div>
+		<!-- Row ends-->
+		<!--Second ROW -->
+		<div class="column row">
+			<hr />
+			<ul class="tabs" data-tabs id="example-tabs">
+				<li class="tabs-title is-active">
+					<a href="#panel1" aria-selected="true">Reviews</a>
+				</li>
+				<li class="tabs-title"><a href="#panel2">Similar Products</a></li>
+			</ul>
+			<div class="tabs-content" data-tabs-content="example-tabs">
+				<div class="tabs-panel is-active" id="panel1">
+					<h4>Reviews</h4>
+					<div class="media-object stack-for-small">
+						<div class="media-object-section">
+							<img class="thumbnail" src="https://placehold.it/200x200" />
+						</div>
+						<div class="media-object-section">
+							<h5>Mike Stevenson</h5>
+							<p>
+								I'm going to improvise. Listen, there's something you should
+								know about me... about inception. An idea is like a virus,
+								resilient, highly contagious. The smallest seed of an idea can
+								grow. It can grow to define or destroy you.
+							</p>
+						</div>
+					</div>
+					<div class="media-object stack-for-small">
+						<div class="media-object-section">
+							<img class="thumbnail" src="https://placehold.it/200x200" />
+						</div>
+						<div class="media-object-section">
+							<h5>Mike Stevenson</h5>
+							<p>
+								I'm going to improvise. Listen, there's something you should
+								know about me... about inception. An idea is like a virus,
+								resilient, highly contagious. The smallest seed of an idea can
+								grow. It can grow to define or destroy you
+							</p>
+						</div>
+					</div>
+					<div class="media-object stack-for-small">
+						<div class="media-object-section">
+							<img class="thumbnail" src="https://placehold.it/200x200" />
+						</div>
+						<div class="media-object-section">
+							<h5>Mike Stevenson</h5>
+							<p>
+								I'm going to improvise. Listen, there's something you should
+								know about me... about inception. An idea is like a virus,
+								resilient, highly contagious. The smallest seed of an idea can
+								grow. It can grow to define or destroy you
+							</p>
+						</div>
+					</div>
+					<label>
+						My Review
+						<textarea placeholder="None"></textarea>
+					</label>
+					<button class="button">Submit Review</button>
+				</div>
+				<div class="tabs-panel" id="panel2">
+					<div class="row medium-up-3 large-up-5">
+						<div class="column">
+							<img class="thumbnail" src="https://placehold.it/350x200" />
+							<h5>Other Product <small>$22</small></h5>
+							<p>
+								In condimentum facilisis porta. Sed nec diam eu diam mattis
+								viverra. Nulla fringilla, orci ac euismod semper, magna diam.
+							</p>
+							<a href="#" class="button hollow tiny expanded">Buy Now</a>
+						</div>
+						<div class="column">
+							<img class="thumbnail" src="https://placehold.it/350x200" />
+							<h5>Other Product <small>$22</small></h5>
+							<p>
+								In condimentum facilisis porta. Sed nec diam eu diam mattis
+								viverra. Nulla fringilla, orci ac euismod semper, magna diam.
+							</p>
+							<a href="#" class="button hollow tiny expanded">Buy Now</a>
+						</div>
+						<div class="column">
+							<img class="thumbnail" src="https://placehold.it/350x200" />
+							<h5>Other Product <small>$22</small></h5>
+							<p>
+								In condimentum facilisis porta. Sed nec diam eu diam mattis
+								viverra. Nulla fringilla, orci ac euismod semper, magna diam.
+							</p>
+							<a href="#" class="button hollow tiny expanded">Buy Now</a>
+						</div>
+						<div class="column">
+							<img class="thumbnail" src="https://placehold.it/350x200" />
+							<h5>Other Product <small>$22</small></h5>
+							<p>
+								In condimentum facilisis porta. Sed nec diam eu diam mattis
+								viverra. Nulla fringilla, orci ac euismod semper, magna diam.
+							</p>
+							<a href="#" class="button hollow tiny expanded">Buy Now</a>
+						</div>
+						<div class="column">
+							<img class="thumbnail" src="https://placehold.it/350x200" />
+							<h5>Other Product <small>$22</small></h5>
+							<p>
+								In condimentum facilisis porta. Sed nec diam eu diam mattis
+								viverra. Nulla fringilla, orci ac euismod semper, magna diam.
+							</p>
+							<a href="#" class="button hollow tiny expanded">Buy Now</a>
+						</div>
+					</div>
 				</div>
 			</div>
-			<button
-				class="close-button"
-				data-close
-				aria-label="Close modal"
-				type="button"
-			>
-				<span aria-hidden="true">&times;</span>
-			</button>
 		</div>
+		<!--Third Row-->
+		<!-- <div class="row column">
+			<hr />
+			<ul class="menu footer-menu">
+				<li></li>
+				<li><a href="#">Home</a></li>
+				<li><a href="#">About</a></li>
+				<li><a href="#">Contact</a></li>
+				<li class="float-right">Copyright 2016</li>
+			</ul>
+		</div> -->
+		<div class="row columns">
+			<div class="medium-6 columns footer-menu">
+				<ul class="menu">
+					<li><a href="#">Home</a></li>
+					<li><a href="#">About</a></li>
+					<li><a href="#">Contact</a></li>
+				</ul>
+			</div>
 
+			<div class="medium-6 columns footer-menu">
+				<ul class="menu float-right">
+					<li class="menu-text"><span>&copy;2021</span></li>
+				</ul>
+			</div>
+		</div>
+		<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+		<script src="https://dhbhdrzi4tiry.cloudfront.net/cdn/sites/foundation.js"></script>
 		<script
 			src="https://code.jquery.com/jquery-3.6.0.min.js"
 			integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
@@ -174,5 +338,8 @@
 		<!--use moment.js- to work with dates-->
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
 		<script src="./assets/js/js.js"></script>
+		<script>
+			$(document).foundation();
+		</script>
 	</body>
 </html>
