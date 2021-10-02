@@ -28,6 +28,10 @@ var loadpage = function () {
 	gethistory(dia); //use to display data for today's date
 };
 
+var appendClass = function(element,classToAdd) {
+	element.classList.add(classToAdd);
+};
+
 //waiting to capture answer for save buttons
  var buttonClickHandler = function (event) {
 	event.preventDefault();
@@ -110,22 +114,26 @@ var gethistory = function (dateEl) {
 							sectionEl.textContent =" Year: "+data.data.Events[index].year+": "+data.data.Events[index].links[0].title ;
 							var DivEl=document.createElement('div');
 							var pEl=document.createElement('p');
-							var buttonEl=document.createElement('button')
-							buttonEl.className = 'button alert card-section rounded-button';
+							var buttonDiv = document.createElement("div");
+							buttonDiv.className = "grid-x grid-margin-x";
+							var buttonEl=document.createElement('button');
+							buttonEl.className = 'button alert card-section rounded-button cell small-6';
 							buttonEl.setAttribute("btn-type","save");
 							buttonEl.setAttribute("data-title", data.data.Events[index].links[0].title);
 							buttonEl.setAttribute("data-year", data.data.Events[index].year);
 							buttonEl.setAttribute("data-descr", data.data.Events[index].text);
 							buttonEl.textContent="Save Search";
 							var LbuttonEl=document.createElement('button')
-							LbuttonEl.className = 'button alert card-section rounded-button';
+							LbuttonEl.className = 'button alert card-section rounded-button cell small-6';
 							LbuttonEl.setAttribute("btn-type","learn");
 							LbuttonEl.setAttribute("data-title", data.data.Events[index].links[0].title);
 							LbuttonEl.textContent="Learn More";
+							buttonDiv.append(buttonEl,LbuttonEl);
 							pEl.textContent=data.data.Events[index].text;
 							DivEl.appendChild(pEl);
-							DivEl.appendChild(buttonEl);
-							DivEl.appendChild(LbuttonEl);
+							//DivEl.appendChild(buttonEl);
+							//DivEl.appendChild(LbuttonEl);
+							DivEl.appendChild(buttonDiv);
 							var container = document.getElementById("accordion");
 							container.appendChild(sectionEl);
 							container.appendChild(DivEl);
