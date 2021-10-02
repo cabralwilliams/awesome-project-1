@@ -18,6 +18,7 @@ body {
 	color: var(--dark);
 	line-height: 1.5;
 	font-size: 16px;
+	height: 100%;
 }
 
 .rounded-button {
@@ -26,7 +27,36 @@ body {
 	border-radius: var(--border-radius);
 	margin: 5px auto;
 }
+#bookmarks li {
+	border-radius: var(--border-radius);
+	background-color: var(--gray);
+	margin-left: 5px;
+	margin-right: 5px;
+}
 
 .view-history-button {
 	padding: 10px;
 }
+
+#date-select {
+	padding: 3px 10px;
+	margin-left: 50px;
+}
+
+/* .main-content {
+	background-image: url("../images/img2.jpeg");
+	background-position: center;
+	background-size: cover;
+	position: relative;
+	height: 100%;
+}
+
+.main-content :before {
+	content: "";
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	background: rgba(240, 236, 236, 0.062);
+} */
