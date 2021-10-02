@@ -1,0 +1,32 @@
+:root {
+	--primary: white;
+	--border-radius: 0.3rem;
+	--cardcolor: navy;
+	--lightblue: #c4dbf6;
+	--gray: #8590aa;
+}
+
+* {
+	box-sizing: border-box;
+}
+
+body {
+	background-color: var(--primary);
+	margin: 0;
+	padding: 0;
+	font-family: "IBM Plex Sans", sans-serif;
+	color: var(--dark);
+	line-height: 1.5;
+	font-size: 16px;
+}
+
+.rounded-button {
+	padding: 10px 0px;
+	background-color: var(--gray);
+	border-radius: var(--border-radius);
+	margin: 5px auto;
+}
+
+.view-history-button {
+	padding: 10px;
+}
