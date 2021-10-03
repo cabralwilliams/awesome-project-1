@@ -15,17 +15,7 @@ var loadpage = function () {
 		//if a search has been saved on local storage then
 		//loop over array to recreate saved searches buttons on the webpage
 		$.each(searches, function (index, searches) {
-			//recreate buttons for each event
-			// var button = document.createElement("button");
-			// button.type = "button";
-			// button.textContent = searches.title;
-			// button.className = "button success cell small-12 rounded-button";
-			// button.setAttribute("data-title", searches.title);
-			// button.setAttribute("data-year", searches.year);
-			// var container = document.getElementById("save-btns");
-			// container.appendChild(button);
-			//bookmarks
-			var liElem = document.createElement("li");
+		    var liElem = document.createElement("li");
 			liElem.setAttribute("data-title", searches.title);
 			liElem.setAttribute("data-year", searches.year);
 			liElem.classList.add("secondary", "rounded-corners");
@@ -59,8 +49,16 @@ var buttonClickHandler = function (event) {
 			};
 			//save obj on array
 			searches.push(eventDataObj);
-			saveSearches(); //go to save on local storage
-			//missing to create buttons
+			//go to save on local storage
+			saveSearches(); 
+			//display button with saved search
+			var liElem = document.createElement("li");
+			liElem.setAttribute("data-title", eventDataObj.title);
+			liElem.setAttribute("data-year", eventDataObj.year);
+			liElem.classList.add("secondary", "rounded-corners");
+			liElem.innerHTML = "<a href='#'>" + eventDataObj.title + "</a>";
+			var container = document.getElementById("bookmarks");
+			container.appendChild(liElem);
 		} else {
 			//search on array if event already exist
 			var index = -1;
@@ -78,8 +76,16 @@ var buttonClickHandler = function (event) {
 				};
 				//save obj on array
 				searches.push(eventDataObj);
-				saveSearches(); //go to save on local storage
-				//missing to create buttons
+				//go to save on local storage
+				saveSearches(); 
+				//display button with saved search
+				var liElem = document.createElement("li");
+				liElem.setAttribute("data-title", eventDataObj.title);
+				liElem.setAttribute("data-year", eventDataObj.year);
+				liElem.classList.add("secondary", "rounded-corners");
+				liElem.innerHTML = "<a href='#'>" + eventDataObj.title + "</a>";
+				var container = document.getElementById("bookmarks");
+				container.appendChild(liElem)
 			}
 		}
 	}
