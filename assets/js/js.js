@@ -55,6 +55,7 @@ var buttonClickHandler = function (event) {
 			var liElem = document.createElement("li");
 			liElem.setAttribute("data-title", eventDataObj.title);
 			liElem.setAttribute("data-year", eventDataObj.year);
+			liElem.setAttribute("btn-type", "learn");
 			liElem.classList.add("secondary", "rounded-corners");
 			liElem.innerHTML = "<a href='#'>" + eventDataObj.title + "</a>";
 			var container = document.getElementById("bookmarks");
@@ -82,6 +83,7 @@ var buttonClickHandler = function (event) {
 				var liElem = document.createElement("li");
 				liElem.setAttribute("data-title", eventDataObj.title);
 				liElem.setAttribute("data-year", eventDataObj.year);
+				liElem.setAttribute("btn-type", "learn");
 				liElem.classList.add("secondary", "rounded-corners");
 				liElem.innerHTML = "<a href='#'>" + eventDataObj.title + "</a>";
 				var container = document.getElementById("bookmarks");
