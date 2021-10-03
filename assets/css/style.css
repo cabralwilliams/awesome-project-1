@@ -12,7 +12,7 @@
 	--warm: #f1edea;
 	--darkgray: #6c757d;
 	--headerText: #5b5d5f;
-	--textColor: ##36454F.;
+	--textColor: #36454f; /* #c4d0cc; #36454F.;*/
 }
 
 * {
@@ -34,16 +34,22 @@ body {
 
 .headerCls,
 .headerCls ul {
-	background-color: #d7cec7;
-	color: #5b5d5f; /* var(--darkgray) */
+	background-color: transparent;
+	color: var(--warm); /* #5b5d5f;*/ /* var(--darkgray)*/
 	font-family: "Source Sans Pro", sans-serif;
-	font-size: 1.3rem;
+	font-size: 2rem;
+	height: 7rem;
 }
 
 .headerCls .top-bar-right ul li a {
 	font-weight: bold;
 	font-size: 1rem;
-	color: var(--headerText);
+	color: var(--warm);
+}
+.headerCls {
+	background: url("../images/img5.jpeg");
+	background-position: right;
+	background-size: cover;
 }
 
 .left-top-section,
