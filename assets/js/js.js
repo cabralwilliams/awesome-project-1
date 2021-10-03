@@ -113,6 +113,7 @@ var gethistory = function (dateEl) {
 						": " +
 						data.data.Events[l].links[0].title;
 					description.textContent = data.data.Events[l].text;
+					document.querySelector("#accordion").innerHTML = "";
 					//Needed to activate accordion on Jquery
 					$(function () {
 						var icons = {
@@ -136,6 +137,7 @@ var gethistory = function (dateEl) {
 								": " +
 								data.data.Events[index].links[0].title;
 							var DivEl = document.createElement("div");
+							//DivEl.className = "cell small-12";
 							var pEl = document.createElement("p");
 							var buttonDiv = document.createElement("div");
 							buttonDiv.className = "grid-x grid-margin-x";
