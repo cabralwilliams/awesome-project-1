@@ -6,7 +6,7 @@ SButtonsEl = document.querySelector("#accordion");
 //initialize foundation framework
 $(document).foundation();
 
-var redirectPage = function(searchTerm) {
+var redirectPage = function (searchTerm) {
 	document.location.replace("./learn_more.html?q=" + searchTerm);
 };
 
@@ -19,7 +19,7 @@ var loadpage = function () {
 		//if a search has been saved on local storage then
 		//loop over array to recreate saved searches buttons on the webpage
 		$.each(searches, function (index, searches) {
-		    var liElem = document.createElement("li");
+			var liElem = document.createElement("li");
 			liElem.setAttribute("data-title", searches.title);
 			liElem.setAttribute("data-year", searches.year);
 			liElem.classList.add("secondary", "rounded-corners");
@@ -54,7 +54,7 @@ var buttonClickHandler = function (event) {
 			//save obj on array
 			searches.push(eventDataObj);
 			//go to save on local storage
-			saveSearches(); 
+			saveSearches();
 			//display button with saved search
 			var liElem = document.createElement("li");
 			liElem.setAttribute("data-title", eventDataObj.title);
@@ -82,7 +82,7 @@ var buttonClickHandler = function (event) {
 				//save obj on array
 				searches.push(eventDataObj);
 				//go to save on local storage
-				saveSearches(); 
+				saveSearches();
 				//display button with saved search
 				var liElem = document.createElement("li");
 				liElem.setAttribute("data-title", eventDataObj.title);
@@ -91,7 +91,7 @@ var buttonClickHandler = function (event) {
 				liElem.classList.add("secondary", "rounded-corners");
 				liElem.innerHTML = "<a href='#'>" + eventDataObj.title + "</a>";
 				var container = document.getElementById("bookmarks");
-				container.appendChild(liElem)
+				container.appendChild(liElem);
 			}
 		}
 	}
@@ -126,7 +126,12 @@ var gethistory = function (dateEl) {
 						data.data.Events[l].links[0].title;
 					description.textContent = data.data.Events[l].text;
 					//document.querySelector("#featuredLearn").setAttribute("data-title", data.data.Events[l].links[0].title);
-					document.querySelector("#featuredLearn").setAttribute("onclick", "redirectPage(\"" + data.data.Events[l].links[0].title + "\")");
+					document
+						.querySelector("#featuredLearn")
+						.setAttribute(
+							"onclick",
+							'redirectPage("' + data.data.Events[l].links[0].title + '")'
+						);
 					document.querySelector("#accordion").innerHTML = "";
 					//Needed to activate accordion on Jquery
 					$(function () {
@@ -157,7 +162,7 @@ var gethistory = function (dateEl) {
 							buttonDiv.className = "grid-x grid-margin-x";
 							var buttonEl = document.createElement("button");
 							buttonEl.className =
-								"button alert card-section rounded-button cell small-6";
+								"button  card-section rounded-button cell small-6";
 							buttonEl.setAttribute("btn-type", "save");
 							buttonEl.setAttribute(
 								"data-title",
@@ -168,7 +173,7 @@ var gethistory = function (dateEl) {
 							buttonEl.textContent = "Save Search";
 							var LbuttonEl = document.createElement("button");
 							LbuttonEl.className =
-								"button alert card-section rounded-button cell small-6";
+								"button  card-section rounded-button cell small-6";
 							LbuttonEl.setAttribute("btn-type", "learn");
 							LbuttonEl.setAttribute(
 								"data-title",
@@ -297,7 +302,7 @@ function getBooks(searchString) {
 			}
 		})
 		.then(function (data) {
-			console.log(data);  //need to call function to display books.
+			console.log(data); //need to call function to display books.
 		})
 		.catch(function (error) {
 			console.error(
