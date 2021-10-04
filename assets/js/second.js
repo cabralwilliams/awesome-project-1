@@ -45,59 +45,6 @@ function getBooks(searchString) {
 		html1 += "<h5>" + title + " <small>" + authors + "</small></h5>";
 		html1 += "<p>" + categories + "</p>";
 		html1 += "<p> <a href='" + link + "'></a></p>";
-		//
-		// 	</h5>
-		// 	<p>
-		// 		In condimentum facilisis porta. Sed nec diam eu diam mattis viverra.
-		// 		Nulla fringilla, orci ac euismod semper, magna diam.
-		// 	</p>
-		// 	<a href="#" class="button hollow tiny expanded">
-		// 		Buy Now
-		// 	</a>
-
-		// <div class="column">
-		// 	<img class="thumbnail" src="https://placehold.it/350x200" />
-		// 	<h5>
-		// 		Other Product <small>$22</small>
-		// 	</h5>
-		// 	<p>
-		// 		In condimentum facilisis porta. Sed nec diam eu diam mattis viverra.
-		// 		Nulla fringilla, orci ac euismod semper, magna diam.
-		// 	</p>
-		// 	<a href="#" class="button hollow tiny expanded">
-		// 		Buy Now
-		// 	</a>
-		// </div>;
-
-		// bookCard.className = "card cell small-12 medium-4 large-3";
-		// var title = bookData.volumeInfo.title;
-		// var link = bookData.volumeInfo.infoLink;
-		// var authors = bookData.volumeInfo.authors;
-		// var categories = bookData.volumeInfo.categories;
-		// var titleH = document.createElement("h3");
-		// titleH.className = "card-divider";
-		// titleH.textContent = title;
-		// var authorDiv = document.createElement("div");
-		// authorDiv.className = "card-section";
-		// if (authors) {
-		// 	authorDiv.textContent = "Author(s): " + authors.join(", ");
-		// } else {
-		// 	authorDiv.textContent = "Author(s): Not listed";
-		// }
-		// var categoryDiv = document.createElement("div");
-		// categoryDiv.className = "card-section";
-		// if (categories) {
-		// 	categoryDiv.textContent = "Categories: " + categories.join(", ");
-		// } else {
-		// 	categoryDiv.textContent = "Categories: Not listed";
-		// }
-		// var linkDiv = document.createElement("div");
-		// linkDiv.className = "card-section";
-		// var linkAnchor = document.createElement("a");
-		// linkAnchor.href = link;
-		// linkAnchor.textContent = "Google Play Link";
-		// linkDiv.appendChild(linkAnchor);
-		// bookCard.append(titleH, authorDiv, categoryDiv, linkDiv);
 		bookCard.innerHTML = html1;
 		return bookCard;
 	};
@@ -131,11 +78,6 @@ var getmoredetails = function (searchTerm) {
 	// format the github api url
 	var omdbURL = "http://www.omdbapi.com/?s=" + searchTerm + "&apikey=a6a19b04";
 	var bookURL = "http://openlibrary.org/search.json?q=" + searchTerm;
-	// make a get request to url
-	// function to process the data
-	//var header = getTabsHeaders();
-	//$(".tabs-container").append(header);
-	//var tabsContentDiv = getTabsContent();
 
 	var getMovieCard = function (movieData) {
 		console.log(movieData);
@@ -167,23 +109,6 @@ var getmoredetails = function (searchTerm) {
 		html1 += "					</div>";
 		divElem.html(html1);
 
-		// var movieCard = document.createElement("div");
-		// movieCard.className = "card cell small-12 medium-4 large-3";
-		// var titleH = document.createElement("h3");
-		// titleH.className = "card-divider";
-		// titleH.textContent = m_Title;
-		// var detailDiv1 = document.createElement("div");
-		// detailDiv1.className = "card-section";
-		// detailDiv1.textContent =
-		// 	m_Year + " " + m_Type.charAt(0).toUpperCase() + m_Type.slice(1);
-		// var linkDiv = document.createElement("div");
-		// linkDiv.className = "card-section";
-		// var linkAnchor = document.createElement("a");
-		// linkAnchor.href = "https://www.imdb.com/title/" + m_imdbID;
-		// linkAnchor.textContent = "IMDB Page";
-		// linkDiv.appendChild(linkAnchor);
-		// movieCard.append(titleH, detailDiv1, linkDiv);
-		// return movieCard;
 		return divElem;
 	};
 	fetch(omdbURL).then(function (response) {
@@ -203,19 +128,6 @@ var getmoredetails = function (searchTerm) {
 			alert("Error: " + response.statusText);
 		}
 	});
-
-	/*
-	fetch(bookURL).then(function (response) {
-		// request was successful
-		if (response.ok) {
-			response.json().then(function (data) {
-				console.log(data);
-			});
-		} else {
-			alert("Error: " + response.statusText);
-		}
-	});
-	*/
 };
 
 var getSearchData = function () {
@@ -235,67 +147,3 @@ var getSearchData = function () {
 };
 
 getSearchData();
-
-// function getTabContainer() {
-// 	var header = getTabsHeaders();
-// 	$(".tabs-container").append(header);
-// 	var tabsContentDiv = getTabsContent();
-// 	var movieTab = getMoviesTab();
-// 	tabsContentDiv.append(movieTab);
-// 	$(".tabs-container").append(tabsContentDiv);
-// }
-// function getTabsContainer() {
-// 	var tabs_container = $("div").addClass("column row");
-// 	var hrElem = $("<hr>");
-// 	tabs_container.append(hrElem);
-// 	return tabs_container;
-// }
-
-// function getTabsHeaders() {
-// 	var ulElem = $("<ul>")
-// 		.addClass("tabs")
-// 		.attr("id", "example-tabs")
-// 		.attr("data-tabs", "");
-// 	var html1 = "<li class='tabs-title is-active'>";
-// 	html1 += "<a href='#panel1' aria-selected='true'>Movies</a>";
-// 	html1 += "</li>";
-// 	html1 += "<li class='tabs-title'><a href='#panel2'>Books</a></li>";
-// 	ulElem.html(html1);
-// 	return ulElem;
-//}
-
-// function getTabsContent() {
-// 	var divElem = $("<div>")
-// 		.addClass("tabs-content")
-// 		.attr("data-tabs-content", "example-tabs");
-
-// 	return divElem;
-// }
-
-// function getMoviesTab() {
-// 	var panelDiv = $("<div>")
-// 		.addClass("tabs-panel is-active")
-// 		.attr("id", "panel1");
-// 	var h4Elem = $("<h4>").html("Movies");
-// 	panelDiv.append(h4Elem);
-// 	var movies = getMovieElements();
-// 	panelDiv.append(movies);
-// 	return panelDiv;
-// }
-
-// function getMovieElements(title, author) {
-// 	var divElem = $("<div>");
-// 	divElem.addClass("media-object stack-for-small");
-// 	var html1 = "<div class='media-object-section'>";
-// 	html1 += "	<img class='thumbnail' src='https://placehold.it/200x200' />";
-// 	html1 += "					</div> ";
-// 	html1 += "	<div class='media-object-section'>";
-// 	html1 += "	<h5>" + title + "</h5> ";
-// 	html1 += "						<p> ";
-// 	html1 +=
-// 		"							I'm going to improvise. Listen, there's something you should know about me... about inception. An idea is like a virus,resilient, highly contagious. The smallest seed of an idea can grow. It can grow to define or destroy you.";
-// 	html1 += "						</p>";
-// 	html1 += "					</div>";
-// 	divElem.html(html1);
-// 	return divElem;
-// }
