@@ -1,64 +1,80 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-            <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-            <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-            <!--Foundation Stylesheet-->
-            <link
-                rel="stylesheet"
-                href="https://cdn.jsdelivr.net/npm/foundation-sites@6.6.3/dist/css/foundation.min.css"
-                integrity="sha256-ogmFxjqiTMnZhxCqVmcqTvjfe1Y/ec4WaRj/aQPvn+I="
-                crossorigin="anonymous"
-            />
-            <link
-                href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans:400,400i,700&display=swap"
-                rel="stylesheet"
-            />
-            <link
-                rel="stylesheet"
-                href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css"
-            />
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+		<!--Foundation Stylesheet-->
+		<link
+			rel="stylesheet"
+			href="https://cdn.jsdelivr.net/npm/foundation-sites@6.6.3/dist/css/foundation.min.css"
+			integrity="sha256-ogmFxjqiTMnZhxCqVmcqTvjfe1Y/ec4WaRj/aQPvn+I="
+			crossorigin="anonymous"
+		/>
+		<link
+			href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans:400,400i,700&display=swap"
+			rel="stylesheet"
+		/>
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css"
+		/>
 
-            <!--Jquery stylesheet-->
-            <link rel="stylesheet" href="./assets/css/jquery-ui.css">
-            <!--our pesonal stylesheet-->
+		<!--Jquery stylesheet-->
+		<link rel="stylesheet" href="./assets/css/jquery-ui.css" />
+		<!--our pesonal stylesheet-->
 
-            <link rel="stylesheet" href="./assets/css/style.css" />
-            <title>Discover More About...</title>
-    </head>
-    <body>
-        <div class="grid-x grid-padding-x">
+		<link rel="stylesheet" href="./assets/css/style.css" />
+		<title>Discover More About...</title>
+	</head>
+	<body>
+		<div class="grid-x grid-padding-x">
 			<h2 class="cell small-8" id="secondTitle"></h2>
-            <a class="cell small-4" href="./index.html"><h3>Back to Home</h3></a>
+			<a class="cell small-4" href="./index.html"><h3>Back to Home</h3></a>
 		</div>
-        <div class="grid-x grid-margin-x">
-            <h2 class="grid-container fluid">Visual Media</h2>
-        </div>
-        <div class="grid-x grid-margin-x" id="testContainer">
+		<div class="column row tabs-container">
+			<hr />
+			<ul class="tabs" data-tabs id="example-tabs">
+				<li class="tabs-title is-active">
+					<a href="#panel1" aria-selected="true">Visual Media</a>
+				</li>
+				<li class="tabs-title">
+					<a href="#panel2">Print Media</a>
+				</li>
+			</ul>
+			<div class="tabs-content" data-tabs-content="example-tabs">
+				<div class="tabs-panel is-active" id="panel1">
+					<h4>Visual Media</h4>
+				</div>
+				<div class="tabs-panel" id="panel2">
+					<div class="row medium-up-3 large-up-5 bookContainer"></div>
+				</div>
+			</div>
+		</div>
 
-        </div>
-        <div class="grid-x grid-margin-x">
-            <h2 class="grid-container fluid">Print Media</h2>
-        </div>
-        <div class="grid-x grid-margin-x" id="bookContainer">
-
-        </div>
-        <script
-            src="https://code.jquery.com/jquery-3.6.0.min.js"
-            integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
-            crossorigin="anonymous"
-        ></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>
-        <!--Foundation JavaScript-->
-        <script
-            src="https://cdn.jsdelivr.net/npm/foundation-sites@6.6.3/dist/js/foundation.min.js"
-            integrity="sha256-pRF3zifJRA9jXGv++b06qwtSqX1byFQOLjqa2PTEb2o="
-            crossorigin="anonymous"
-        ></script>
-        <!--use moment.js- to work with dates-->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
-        <script src="./assets/js/second.js"></script>
-    </body>
+		<div class="grid-x grid-margin-x">
+			<h2 class="grid-container fluid">Visual Media</h2>
+		</div>
+		<div class="grid-x grid-margin-x" id="testContainer"></div>
+		<div class="grid-x grid-margin-x">
+			<h2 class="grid-container fluid">Print Media</h2>
+		</div>
+		<!-- <div class="grid-x grid-margin-x" id="bookContainer"></div> -->
+		<script
+			src="https://code.jquery.com/jquery-3.6.0.min.js"
+			integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+			crossorigin="anonymous"
+		></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>
+		<!--Foundation JavaScript-->
+		<script
+			src="https://cdn.jsdelivr.net/npm/foundation-sites@6.6.3/dist/js/foundation.min.js"
+			integrity="sha256-pRF3zifJRA9jXGv++b06qwtSqX1byFQOLjqa2PTEb2o="
+			crossorigin="anonymous"
+		></script>
+		<!--use moment.js- to work with dates-->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+		<script src="./assets/js/second.js"></script>
+	</body>
 </html>
