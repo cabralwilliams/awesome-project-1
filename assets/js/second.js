@@ -1,6 +1,8 @@
 
 var secondTitle = document.querySelector("#secondTitle");
 var testContainer = document.querySelector("#testContainer");
+var bookContainer = document.querySelector("#bookContainer");
+var googleBooksApiKey = "AIzaSyAQLZKoVW6Z2r8WwtXPTSdVZB-Qgp9n32o";
 var titlize = function(inputString) {
     //This function will return the input string with capital letters at all first letter locations
     var outputString = "";
@@ -22,6 +24,69 @@ var replacePluses = function(inputString) {
     var finalString = newString.replace(/\+/g, " ");
     return finalString;
 };
+
+function getBooks(searchString) {
+	var booksUrl =
+		"https://www.googleapis.com/books/v1/volumes?q=" + searchString + "&key=" +
+		googleBooksApiKey;
+        var getBookCard = function(bookData) {
+            var bookCard = document.createElement("div");
+            bookCard.className = "card cell small-12 medium-4 large-3";
+            var title = bookData.volumeInfo.title;
+            var link = bookData.volumeInfo.infoLink;
+            var authors = bookData.volumeInfo.authors;
+            var categories = bookData.volumeInfo.categories;
+            var titleH = document.createElement("h3");
+		    titleH.className = "card-divider";
+            titleH.textContent = title;
+            var authorDiv = document.createElement("div");
+            authorDiv.className = "card-section";
+            if(authors) {
+                authorDiv.textContent = "Author(s): " + authors.join(", ");
+            } else {
+                authorDiv.textContent = "Author(s): Not listed";
+            }
+            var categoryDiv = document.createElement("div");
+            categoryDiv.className = "card-section";
+            if(categories) {
+                categoryDiv.textContent = "Categories: " + categories.join(", ");
+            } else {
+                categoryDiv.textContent = "Categories: Not listed";
+            }
+            var linkDiv = document.createElement("div");
+            linkDiv.className = "card-section";
+            var linkAnchor = document.createElement("a");
+            linkAnchor.href = link;
+            linkAnchor.textContent = "Google Play Link";
+            linkDiv.appendChild(linkAnchor);
+            bookCard.append(titleH,authorDiv,categoryDiv,linkDiv);
+            return bookCard;
+        };
+	fetch(booksUrl)
+		.then(function (response) {
+			if (response.ok) {
+				return response.json();
+			} else {
+				throw new Error(
+					" Unable to connect to https://www.googleapis.com/books"
+				);
+			}
+		})
+		.then(function (data) {
+			console.log(data);  //need to call function to display books.
+            bookContainer.innerHTML = "";
+            for(var i = 0; i < data.items.length; i++) {
+                var nextBook = getBookCard(data.items[i]);
+                bookContainer.appendChild(nextBook);
+            }
+		})
+		.catch(function (error) {
+			console.error(
+				"There has been a problem with your fetch operation:",
+				error
+			);
+		});
+}
 
 var getmoredetails = function (searchTerm) {
 	// format the github api url
@@ -67,6 +132,7 @@ var getmoredetails = function (searchTerm) {
 			alert("Error: " + response.statusText);
 		}
 	});
+    getBooks(searchTerm);
 	/*
 	fetch(bookURL).then(function (response) {
 		// request was successful
