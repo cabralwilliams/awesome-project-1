@@ -112,6 +112,7 @@ var gethistory = function (dateEl) {
 			// request was successful
 			if (response.ok) {
 				response.json().then(function (data) {
+					console.log(data.data);
 					//display data as buttons
 					var allSearches = data.data.Events; //get only array events
 					var l =
