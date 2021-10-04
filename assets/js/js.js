@@ -311,4 +311,6 @@ function getBooks(searchString) {
 				error
 			);
 		});
+	
 }
+
