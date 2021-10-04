@@ -67,7 +67,7 @@ var getmoredetails = function (searchTerm) {
 			alert("Error: " + response.statusText);
 		}
 	});
-	
+	/*
 	fetch(bookURL).then(function (response) {
 		// request was successful
 		if (response.ok) {
@@ -78,16 +78,20 @@ var getmoredetails = function (searchTerm) {
 			alert("Error: " + response.statusText);
 		}
 	});
-	
+	*/
 };
 
 var getSearchData = function() {
     //This will return the query substring that we will then use for the next search
     var queryString = document.location.search.split("=")[1];
-    queryString = replacePluses(queryString);
-    secondTitle.innerHTML = "";
-    secondTitle.textContent = titlize(queryString);
-    getmoredetails(queryString);
+    if(queryString) {
+        queryString = replacePluses(queryString);
+        secondTitle.innerHTML = "";
+        secondTitle.textContent = titlize(queryString);
+        getmoredetails(queryString);
+    } else {
+        document.location.replace("./index.html");
+    }
 };
 
 getSearchData();

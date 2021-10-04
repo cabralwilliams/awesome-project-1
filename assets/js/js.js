@@ -6,6 +6,10 @@ SButtonsEl = document.querySelector("#accordion");
 //initialize foundation framework
 $(document).foundation();
 
+var redirectPage = function(searchTerm) {
+	document.location.replace("./learn_more.html?q=" + searchTerm);
+};
+
 //load page first time-get history with today's data
 var loadpage = function () {
 	searches = []; //initialize array
@@ -93,8 +97,8 @@ var buttonClickHandler = function (event) {
 	}
 	if (targetEl.getAttribute("btn-type") === "learn") {
 		//user click on learn more
-		var title = targetEl.getAttribute(data - title);
-		getmoredetails(title); //Cabral calls to second page
+		var title = targetEl.getAttribute("data-title");
+		redirectPage(title);
 	}
 };
 
@@ -116,11 +120,13 @@ var gethistory = function (dateEl) {
 					intro.textContent =
 						"On " +
 						data.date +
-						"," +
+						", " +
 						data.data.Events[l].year +
 						": " +
 						data.data.Events[l].links[0].title;
 					description.textContent = data.data.Events[l].text;
+					//document.querySelector("#featuredLearn").setAttribute("data-title", data.data.Events[l].links[0].title);
+					document.querySelector("#featuredLearn").setAttribute("onclick", "redirectPage(\"" + data.data.Events[l].links[0].title + "\")");
 					document.querySelector("#accordion").innerHTML = "";
 					//Needed to activate accordion on Jquery
 					$(function () {
