@@ -6,6 +6,7 @@ SButtonsEl = document.querySelector("#accordion");
 //initialize foundation framework
 $(document).foundation();
 
+//open second html page to display books and movies
 var redirectPage = function (searchTerm) {
 	document.location.replace("./learn_more.html?q=" + searchTerm);
 };
@@ -184,8 +185,6 @@ var gethistory = function (dateEl) {
 							buttonDiv.append(buttonEl, LbuttonEl);
 							pEl.textContent = data.data.Events[index].text;
 							DivEl.appendChild(pEl);
-							//DivEl.appendChild(buttonEl);
-							//DivEl.appendChild(LbuttonEl);
 							DivEl.appendChild(buttonDiv);
 							var container = document.getElementById("accordion");
 							container.appendChild(sectionEl);
@@ -195,11 +194,33 @@ var gethistory = function (dateEl) {
 				});
 			} else {
 				//api response returned errors
-				alert("Error: " + response.statusText);
+				// call modal window to display errors
+				msgerror.textContent="Error: " + response.status+" "+response.statusText;
+				$( function() {
+				  $( "#dialog-message" ).dialog({
+					  modal: true,
+					  buttons: {
+						Ok: function() {
+						  $( this ).dialog( "close" );
+						}
+					  }
+				  });
+				}); //end modal
 			}
 		})
 		.catch(function (error) {
-			alert("Unable to connect to history.muffinlabs.com/date/ API");
+			// call modal window to display errors
+			msgerror.textContent="Error: Unable to connect to history.muffinlabs.com/date/ API";
+			$( function() {
+			  $( "#dialog-message" ).dialog({
+				  modal: true,
+				  buttons: {
+					Ok: function() {
+					  $( this ).dialog( "close" );
+					}
+				  }
+			  });
+			});
 		});
 };
 
