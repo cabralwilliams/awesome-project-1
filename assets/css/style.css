@@ -53,7 +53,8 @@ body {
 }
 
 .left-top-section,
-.left-top-section .callout {
+.left-top-section .callout,
+#container-accordion {
 	background-color: #eaeef1;
 	border: 5px solid var(--gold);
 	color: var(--textColor);
@@ -63,7 +64,8 @@ body {
 	border: none;
 }
 
-.event-details-header {
+.event-details-header,
+.event-list-header {
 	background-color: var(--redwine);
 	color: beige;
 	text-align: center;
@@ -72,6 +74,24 @@ body {
 
 .learn-more-button,
 .view-history-button {
+	/* background: rgb(118, 50, 63);
+	background: linear-gradient(
+		180deg,
+		rgba(118, 50, 63, 1) 0%,
+		rgba(135, 65, 79, 1) 55%,
+		rgba(154, 108, 117, 1) 100%
+	);
+	color: var(--gold);
+	font-family: "IBM Plex Sans", sans-serif;
+	border: 1px solid var(--gold); */
+}
+
+.rounded-button,
+.view-history-button {
+	padding: 10px 0px; /*
+	 background-color: var(--gray); */
+	border-radius: var(--border-radius);
+	margin: 5px auto;
 	background: rgb(118, 50, 63);
 	background: linear-gradient(
 		180deg,
@@ -85,6 +105,8 @@ body {
 }
 .view-history-button {
 	border-left: none;
+	border-radius: 0;
+	margin: 0 0;
 }
 
 .view-history-header h5 {
@@ -93,7 +115,7 @@ body {
 	font-weight: 700;
 	padding-left: 4px;
 }
-.learn-more-button:hover,
+.rounded-button:hover,
 .view-history-button:hover {
 	background-color: var(--redwine);
 	color: var(--gold);
@@ -103,11 +125,11 @@ body {
 	padding-bottom: 0;
 	margin-bottom: 0;
 	font-weight: 800;
-	font-size: 1.3rem;
+	font-size: 1.8rem;
 }
 
 #description {
-	font-size: 1rem;
+	font-size: 1.5rem;
 	font-weight: 500;
 	margin-top: 0px;
 	padding-top: 0px;
@@ -115,12 +137,7 @@ body {
 #select-date {
 	border: 1px solid var(--gold);
 }
-.rounded-button {
-	padding: 10px 0px;
-	background-color: var(--gray);
-	border-radius: var(--border-radius);
-	margin: 5px auto;
-}
+
 #bookmarks li {
 	border-radius: var(--border-radius);
 	background-color: var(--gray);
@@ -147,6 +164,8 @@ body {
 }
 .footer-menu {
 	background-color: var(--redwine);
+	margin-top: 10rem;
+	margin-bottom: 0;
 }
 
 .footer-menu li a,

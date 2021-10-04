@@ -82,7 +82,7 @@
 			</nav>
 		</div>
 
-		<div class="grid-x grid-margin-x">
+		<div class="grid-x grid-margin-x grid-padding-x">
 			<div class="cell small-12 medium-6">
 				<!--left section -->
 				<!-- <img class="thumbnail" src="https://placehold.it/650x350" />
@@ -168,9 +168,23 @@
 					nulla justo, eget luctus tortor. Nulla facilisi. Duis aliquet egestas
 					purus in.
 				</p> -->
-				<div class="grid-x grid-margin-x" style="height: 500px; overflow: auto">
+				<div
+					class="grid-x grid-margin-x right-top-section"
+					style="height: 500px; overflow: auto"
+				>
 					<div id="container-accordion" class="cell small-12">
-						<h3 class="card-divider" style="position: sticky; position: -webkit-sticky; top: 0; z-index: 1000;" id="line">It Happened on Today!</h3>
+						<h3
+							class="card-divider event-list-header"
+							style="
+								position: sticky;
+								position: -webkit-sticky;
+								top: 0;
+								z-index: 1000;
+							"
+							id="line"
+						>
+							It Happened on Today!
+						</h3>
 						<div class="accordion" id="accordion">
 							<!--insert by Js all searched events-->
 						</div>
@@ -207,7 +221,7 @@
 		</div>
 		<!-- Row ends-->
 		<!--Second ROW -->
-		<div class="grid-x grid-margin-x">
+		<!-- <div class="grid-x grid-margin-x grid-padding-x">
 			<hr />
 			<ul class="tabs" data-tabs id="example-tabs">
 				<li class="tabs-title is-active">
@@ -316,7 +330,7 @@
 					</div>
 				</div>
 			</div>
-		</div>
+		</div> -->
 		<!--Third Row-->
 		<!-- <div class="row column">
 			<hr />
@@ -328,8 +342,8 @@
 				<li class="float-right">Copyright 2016</li>
 			</ul>
 		</div> -->
-		<div class="row columns">
-			<div class="medium-6 columns footer-menu">
+		<div class="grid-x">
+			<div class="medium-6 cell footer-menu">
 				<ul class="menu">
 					<li><a href="#">Home</a></li>
 					<li><a href="#">About</a></li>
@@ -337,7 +351,7 @@
 				</ul>
 			</div>
 
-			<div class="medium-6 columns footer-menu">
+			<div class="medium-6 cell footer-menu">
 				<ul class="menu float-right">
 					<li class="menu-text"><span>&copy;2021</span></li>
 				</ul>
