@@ -173,6 +173,12 @@ body {
 	color: white;
 	font-weight: bold;
 }
+
+.thumbnail1 {
+	width: 5rem;
+	height: 5rem;
+	border: 2px solid var(--gold);
+}
 /* .main-content {
 	background-image: url("../images/img2.jpeg");
 	background-position: center;
