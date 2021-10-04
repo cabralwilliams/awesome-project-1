@@ -125,11 +125,11 @@ body {
 	padding-bottom: 0;
 	margin-bottom: 0;
 	font-weight: 800;
-	font-size: 1.3rem;
+	font-size: 1.8rem;
 }
 
 #description {
-	font-size: 1rem;
+	font-size: 1.5rem;
 	font-weight: 500;
 	margin-top: 0px;
 	padding-top: 0px;
@@ -164,6 +164,8 @@ body {
 }
 .footer-menu {
 	background-color: var(--redwine);
+	margin-top: 10rem;
+	margin-bottom: 0;
 }
 
 .footer-menu li a,
