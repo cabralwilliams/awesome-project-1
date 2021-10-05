@@ -349,7 +349,12 @@ function getBooks(searchString) {
 		var link = bookData.volumeInfo.infoLink;
 		var authors = bookData.volumeInfo.authors;
 		var categories = bookData.volumeInfo.categories;
-		var imgsrc = bookData.volumeInfo.imageLinks.smallThumbnail;
+        var imgsrc;
+        if(bookData.volumeInfo.imageLinks) {
+            imgsrc = bookData.volumeInfo.imageLinks.hasOwnProperty("smallThumbnail") ? bookData.volumeInfo.imageLinks.smallThumbnail : null;
+        } else {
+            imgsrc = null;
+        }
 		var publisher = "";
 		var publishedDate = "";
 		if (typeof bookData.volumeInfo.publisher !== "undefined") {
@@ -366,7 +371,11 @@ function getBooks(searchString) {
 
 		bookCard.classList.add("column", "book-result");
 		var html1 = "";
-		html1 += "<img class='thumbnail1' src='" + imgsrc + "' />";
+        if(imgsrc !== null) {
+            html1 += "<img class='thumbnail1' src='" + imgsrc + "' />";
+        } else {
+            html1 += "<img alt='No thumnail available' class='thumbnail1' />";
+        }
 		html1 +=
 			"<h5 class='media-title'>" +
 			title +
@@ -401,7 +410,8 @@ function getBooks(searchString) {
 			}
 		})
 		.catch(function (error) {
-			debugger;
+			//debugger;
+            console.log(error);
 			//dispError("Error: " + error.status+" "+error.statusText);
 			//api response returned errors, so call modal window to display errors
 			dispError("Error: There has been a problem with your fetch operation");		
@@ -452,10 +462,18 @@ var getmoredetails = function (searchTerm) {
 				testContainer.innerHTML = "";
 				console.log(data);
 				console.log(Object.keys(data));
-				for (var i = 0; i < data.Search.length; i++) {
-					var nextCard = getMovieCard(data.Search[i]);
-					$("#panel1").append(nextCard);
-				}
+                if(data.hasOwnProperty("Search")) {
+                    for (var i = 0; i < data.Search.length; i++) {
+                        var nextCard = getMovieCard(data.Search[i]);
+                        $("#panel1").append(nextCard);
+                    }
+                } else {
+                    var noticeDiv = $("<div>");
+                    var noticeHeader = $("<h3>");
+                    noticeHeader.text("Sorry, the searched match no visual media.");
+                    noticeDiv.append(noticeHeader);
+                    $("#panel1").append(noticeDiv);
+                }
 				//	$("#panel1").append(tabsContentDiv);
 			});
 		} else {
