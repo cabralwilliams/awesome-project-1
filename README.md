@@ -18,7 +18,7 @@ https://watch.screencastify.com/v/nggWdgaB6746QUG1NspP
 
 Built With HTML, CSS, Foundation, Java Script, Moment.js and Jquery.
 
-We use the https://history.muffinlabs.com/date/ API to retrieve history events  for specific day, https://www.googleapis.com/books API to search for books related to a specific event,  and http://www.omdbapi.com to look for books related to the user search as well.
+We use the https://en.wikipedia.org/api/rest_v1/feed/onthisday/events/ API to retrieve history events  for specific day. Then  https://www.googleapis.com/books API to search for books related to a specific event, and finally, http://www.omdbapi.com API to look for movies related to same event. 
 
 We also use localStorage to store user manual searches.
 
