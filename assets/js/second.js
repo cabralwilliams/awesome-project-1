@@ -39,12 +39,30 @@ function getBooks(searchString) {
 		var authors = bookData.volumeInfo.authors;
 		var categories = bookData.volumeInfo.categories;
 		var imgsrc = bookData.volumeInfo.imageLinks.smallThumbnail;
+		var publisher = "";
+		var publishedDate = "";
+		if (typeof bookData.volumeInfo.publisher !== "undefined") {
+			publisher = bookData.volumeInfo.publisher;
+		}
+		console.log(typeof bookData.volumeInfo.publisher);
+		if (typeof bookData.volumeInfo.publishedDate !== "undefined") {
+			publishedDate = bookData.volumeInfo.publishedDate;
+		}
+
+		var publication = "";
+		if (publisher != "" || publishedDate != "")
+			publication = publisher + "[ " + publishedDate + "]";
+
 		bookCard.classList.add("column");
 		var html1 = "";
 		html1 += "<img class='thumbnail1' src='" + imgsrc + "' />";
 		html1 += "<h5>" + title + " <small>" + authors + "</small></h5>";
-		html1 += "<p>" + categories + "</p>";
-		html1 += "<p> <a href='" + link + "'></a></p>";
+		if (typeof categories !== "undefined") html1 += "<p>" + categories + "</p>";
+		html1 += "<p>" + publication + "</p>";
+		html1 +=
+			"<p> <a href='" +
+			link +
+			"' class='button hollow tiny expanded' target='_blank'>Buy Now</a></p>"; //<a href="#" class="button hollow tiny expanded">Buy Now</a>
 		bookCard.innerHTML = html1;
 		return bookCard;
 	};
