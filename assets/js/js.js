@@ -23,6 +23,7 @@ var loadpage = function () {
 			var liElem = document.createElement("li");
 			liElem.setAttribute("data-title", searches.title);
 			liElem.setAttribute("data-year", searches.year);
+			liElem.setAttribute("btn-type", "learn");
 			liElem.classList.add("secondary", "rounded-corners");
 			liElem.innerHTML = "<a href='#'>" + searches.title + "</a>";
 			var container = document.getElementById("bookmarks");
@@ -44,7 +45,7 @@ var buttonClickHandler = function (event) {
 	if (targetEl.getAttribute("btn-type") === "save") {
 		//user wants to save event
 		if (!searches) {
-			//if it is first city that is going to be added
+			//if it is first search that is going to be added
 			searches = [];
 			//prepare to save on local storage
 			var eventDataObj = {
@@ -229,60 +230,6 @@ var saveSearches = function () {
 	localStorage.setItem("searches", JSON.stringify(searches));
 };
 
-//using for second search
-var getmoredetails = function (searchTerm) {
-	// format the github api url
-	var omdbURL = "http://www.omdbapi.com/?s=" + searchTerm + "&apikey=a6a19b04";
-	var bookURL = "http://openlibrary.org/search.json?q=" + searchTerm;
-	// make a get request to url
-	// function to process the data
-	var getMovieCard = function (movieData) {
-		var m_imdbID = movieData.imdbID;
-		var m_Title = movieData.Title;
-		var m_Year = movieData.Year;
-		var m_Type = movieData.Type;
-		var movieCard = document.createElement("div");
-		movieCard.className = "card cell";
-		var titleH = document.createElement("h3");
-		titleH.className = "card-divider";
-		titleH.textContent = m_Title;
-		var detailDiv1 = document.createElement("div");
-		detailDiv1.className = "card-section";
-		detailDiv1.textContent =
-			m_Year + " " + m_Type.charAt(0).toUpperCase() + m_Tipe.slice(1);
-		var linkDiv = document.createElement("div");
-		linkDiv.className = "card-section";
-		var linkAnchor = document.createElement("a");
-		linkAnchor.href = "https://www.imdb.com/title/" + m_imdbID;
-		linkAnchor.textContent = "IMDB Page";
-		movieCard.append(titq, detailDiv1, linkDiv);
-		return movieCard;
-	};
-	fetch(omdbURL).then(function (response) {
-		// request was successful
-		if (response.ok) {
-			response.json().then(function (data) {
-				console.log(data);
-				console.log(Object.keys(data));
-			});
-		} else {
-			alert("Error: " + response.statusText);
-		}
-	});
-	/*
-	fetch(bookURL).then(function (response) {
-		// request was successful
-		if (response.ok) {
-			response.json().then(function (data) {
-				console.log(data);
-			});
-		} else {
-			alert("Error: " + response.statusText);
-		}
-	});
-	*/
-};
-
 // add event listeners to form and button container
 SButtonsEl.addEventListener("click", buttonClickHandler);
 
@@ -306,32 +253,6 @@ $(document).ready(function () {
 	});
 	//Let's load todays events
 	loadpage();
-	getBooks("");
 });
 
-function getBooks(searchString) {
-	var booksUrl =
-		"https://www.googleapis.com/books/v1/volumes?q=flowers+inauthor:keyes&key=" +
-		googleBooksApiKey;
-	fetch(booksUrl)
-		.then(function (response) {
-			if (response.ok) {
-				return response.json();
-			} else {
-				throw new Error(
-					" Unable to connect to https://api.openweathermap.org/data/2.5/onecall"
-				);
-			}
-		})
-		.then(function (data) {
-			console.log(data); //need to call function to display books.
-		})
-		.catch(function (error) {
-			console.error(
-				"There has been a problem with your fetch operation:",
-				error
-			);
-		});
-	
-}
 
