@@ -11,7 +11,8 @@ The application will show on initial load a featured event for that day and then
 
 The website is published at https://cabralwilliams.github.io/awesome-project-1/
 
-![image](https://user-images.githubusercontent.com/88918693/135539713-035a84e6-8ad4-400b-8509-d4f594f377e5.png)
+![image](https://user-images.githubusercontent.com/88918693/136046757-85861644-e993-4a65-8416-c0d9d715978d.png)
+
 
 Built With HTML, CSS, Foundation, Java Script, Moment.js and Jquery.
 
