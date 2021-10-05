@@ -4,6 +4,8 @@ var googleBooksApiKey = "AIzaSyAQLZKoVW6Z2r8WwtXPTSdVZB-Qgp9n32o";
 //var for event listerner
 SButtonsEl = document.querySelector("#clicker");
 bookmarksEL = document.querySelector("#bookmarks");
+clearEL = document.querySelector("#clearHistory");
+
 
 //initialize foundation framework
 $(document).foundation();
@@ -217,11 +219,19 @@ var dispError =  function(etext){
 var saveSearches = function () {
 	localStorage.setItem("searches", JSON.stringify(searches));
 };
+//clear saved searches
+var clearSearches = function () {
+	searches=[];  //clear array
+	localStorage.setItem("searches", JSON.stringify(searches)); //empty local storage
+	$(".btn").remove(); //remove buttons 
+};
 
 // add event listeners to save and learn buttons
 SButtonsEl.addEventListener("click", buttonClickHandler);
 // add event listeners to saved search buttons
 bookmarksEL.addEventListener("click",buttonClickHandler);
+//delete saved searches
+clearEL.addEventListener("click", clearSearches);
 
 // load for the first time
 $(document).ready(function () {
