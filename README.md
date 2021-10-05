@@ -15,6 +15,7 @@ The website is published at https://cabralwilliams.github.io/awesome-project-1/
 
 Built With HTML, CSS, Foundation, Java Script, Moment.js and Jquery.
 
-We use the https://history.muffinlabs.com/date/ API to retrieve history events  for specific day. We also use localStorage to store user manual searches.
+We use the https://history.muffinlabs.com/date/ API to retrieve history events  for specific day and https://www.googleapis.com/books API to search for books related to a specific event.
+We also use localStorage to store user manual searches.
 
 ©️2021 Made with ❤️ by Sonali, Cabral and Ivonne
