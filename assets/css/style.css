@@ -1,8 +1,8 @@
 :root {
 	--primary: white;
 	--border-radius: 0.3rem;
-	--cardcolor: navy;
-	--lightblue: #c4dbf6;
+
+	--lightskyblue: #c4dbf6;
 	--gray: #8590aa;
 	--grain: #d7cec7;
 	--redwine: #76323f;
@@ -13,6 +13,9 @@
 	--darkgray: #6c757d;
 	--headerText: #5b5d5f;
 	--textColor: #36454f; /* #c4d0cc; #36454F.;*/
+	--lightblue: #eaeef1;
+	--olivegreen: #556b4b;
+	--lightgreen: #eef7ea;
 }
 
 * {
@@ -55,7 +58,7 @@ body {
 .left-top-section,
 .left-top-section .callout,
 #container-accordion {
-	background-color: #eaeef1;
+	background-color: var(--lightblue); /* #eaeef1;*/
 	border: 5px solid var(--gold);
 	color: var(--textColor);
 }
@@ -65,25 +68,12 @@ body {
 }
 
 .event-details-header,
-.event-list-header {
+.event-list-header,
+.secondpage-header {
 	background-color: var(--redwine);
 	color: beige;
 	text-align: center;
 	border-bottom: 5px solid var(--gold);
-}
-
-.learn-more-button,
-.view-history-button {
-	/* background: rgb(118, 50, 63);
-	background: linear-gradient(
-		180deg,
-		rgba(118, 50, 63, 1) 0%,
-		rgba(135, 65, 79, 1) 55%,
-		rgba(154, 108, 117, 1) 100%
-	);
-	color: var(--gold);
-	font-family: "IBM Plex Sans", sans-serif;
-	border: 1px solid var(--gold); */
 }
 
 .rounded-button,
@@ -179,25 +169,7 @@ body {
 	height: 5rem;
 	border: 2px solid var(--gold);
 }
-/* .main-content {
-	background-image: url("../images/img2.jpeg");
-	background-position: center;
-	background-size: cover;
-	position: relative;
-	height: 100%;
-}
 
-.main-content :before {
-	content: "";
-	position: absolute;
-	left: 0;
-	right: 0;
-	top: 0;
-	bottom: 0;
-	background: rgba(240, 236, 236, 0.062);
-} */
-
-/* FOOTER STYLES START */
 footer {
 	display: block;
 	text-align: center;
@@ -216,4 +188,112 @@ footer div {
 /* END FOOTER STYLES */
 .copy {
 	color: var(--cardcolor);
+}
+
+.secondpage-header {
+	border-bottom: none;
+	border: 5px solid var(--gold);
+	font-size: 1.3rem;
+	text-align: left;
+	font-family: "Source Sans Pro", sans-serif;
+}
+.secondpage-header span {
+	display: inline-block;
+}
+.secondpage-header p {
+	margin-bottom: 0;
+}
+.secondpage-header p,
+.secondpage-header span {
+	color: beige;
+	padding: 10px;
+}
+
+.tabs-container {
+	background-color: var(--grain);
+	border: 5px solid var(--gold);
+	font-family: "Source Sans Pro", sans-serif;
+}
+
+.tabs-title a {
+	font-size: none;
+	font-size: 1.1rem;
+	font-family: "Source Sans Pro", sans-serif;
+	color: var(--gold);
+}
+
+.tabs-title a[aria-selected="true"] {
+	font-size: none;
+	font-size: 1.1rem;
+	font-family: "Source Sans Pro", sans-serif;
+	color: var(--gold);
+	background: linear-gradient(
+		180deg,
+		rgba(118, 50, 63, 1) 0%,
+		rgba(135, 65, 79, 1) 55%,
+		rgba(154, 108, 117, 1) 100%
+	);
+	border: 2px solid var(--gold);
+}
+
+#panel1,
+#panel2 {
+	background-color: var(--lightblue);
+	color: var(--textColor);
+}
+
+#panel1 h4,
+#panel2 h4 {
+	font-size: 1.4rem;
+	padding: 10px;
+	text-align: center;
+	font-weight: bold;
+	border-bottom: 3px solid var(--gold);
+	margin: 1.2rem;
+}
+.media-object-section {
+	font-family: "Source Sans Pro", sans-serif;
+}
+.media-title {
+	font-weight: 700;
+	font-size: 1rem;
+}
+.media-desc {
+	font-size: 0.8rem;
+	font-weight: 600;
+}
+
+.media-link {
+	border: none;
+	border: 2px solid var(--gold);
+	width: 10rem;
+	padding: 0.4rem;
+	margin: 0;
+	border-radius: var(--border-radius);
+	color: var(--gold);
+	background: transparent;
+	font-size: 0.8rem;
+	font-weight: 600;
+}
+
+.media-link:hover {
+	background: linear-gradient(
+		180deg,
+		rgba(118, 50, 63, 1) 0%,
+		rgba(135, 65, 79, 1) 55%,
+		rgba(154, 108, 117, 1) 100%
+	);
+	color: var(--gold);
+}
+
+.bookContainer .column {
+	margin: top 1.5rem;
+}
+
+.media-title small {
+	color: var(--headerText);
+}
+
+.media-desc-cat {
+	color: var(--redwine);
 }
