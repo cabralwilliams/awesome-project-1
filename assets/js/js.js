@@ -116,7 +116,7 @@ var gethistory = function (dateEl) {
 					    var l =
 						Math.floor(Math.random() * (allSearches.length - 1 - 0 + 1)) + 0;
 					line.textContent = "It Happened on " + dateEl;
-					intro.textContent =
+					intro.innerHTML =
 						"On " +
 						dateEl +
 						", " +
@@ -129,7 +129,7 @@ var gethistory = function (dateEl) {
 						.querySelector("#featuredLearn")
 						.setAttribute(
 							"onclick",
-							'redirectPage("' + data.events[l].pages[0].displaytitle + '")'
+							'redirectPage("' + data.events[l].pages[0].normalizedtitle + '")'
 						);
 					document.querySelector("#accordion").innerHTML = "";
 					//Needed to activate accordion on Jquery
@@ -149,7 +149,7 @@ var gethistory = function (dateEl) {
 						if (index !== l) {
 							//create entries for each event
 							var sectionEl = document.createElement("h3");
-							sectionEl.textContent =
+							sectionEl.innerHTML =
 								" Year: " +
 								data.events[index].year +
 								": " +
@@ -165,7 +165,7 @@ var gethistory = function (dateEl) {
 							buttonEl.setAttribute("btn-type", "save");
 							buttonEl.setAttribute(
 								"data-title",
-								data.events[index].pages[0].displaytitle
+								data.events[index].pages[0].normalizedtitle
 							);
 							buttonEl.setAttribute("data-year",data.events[index].year);
 							buttonEl.setAttribute("data-descr",data.events[index].text);
@@ -176,7 +176,7 @@ var gethistory = function (dateEl) {
 							LbuttonEl.setAttribute("btn-type", "learn");
 							LbuttonEl.setAttribute(
 								"data-title",
-								data.events[index].pages[0].displaytitle
+								data.events[index].pages[0].normalizedtitle
 							);
 							LbuttonEl.textContent = "Learn More";
 							buttonDiv.append(buttonEl, LbuttonEl);
