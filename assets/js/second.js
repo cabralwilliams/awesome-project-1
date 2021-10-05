@@ -39,12 +39,36 @@ function getBooks(searchString) {
 		var authors = bookData.volumeInfo.authors;
 		var categories = bookData.volumeInfo.categories;
 		var imgsrc = bookData.volumeInfo.imageLinks.smallThumbnail;
-		bookCard.classList.add("column");
+		var publisher = "";
+		var publishedDate = "";
+		if (typeof bookData.volumeInfo.publisher !== "undefined") {
+			publisher = bookData.volumeInfo.publisher;
+		}
+
+		if (typeof bookData.volumeInfo.publishedDate !== "undefined") {
+			publishedDate = bookData.volumeInfo.publishedDate;
+		}
+
+		var publication = "";
+		if (publisher != "" || publishedDate != "")
+			publication = publisher + "[ " + publishedDate + "]";
+
+		bookCard.classList.add("column", "book-result");
 		var html1 = "";
 		html1 += "<img class='thumbnail1' src='" + imgsrc + "' />";
-		html1 += "<h5>" + title + " <small>" + authors + "</small></h5>";
-		html1 += "<p>" + categories + "</p>";
-		html1 += "<p> <a href='" + link + "'></a></p>";
+		html1 +=
+			"<h5 class='media-title'>" +
+			title +
+			" <small>&nbsp; - &nbsp;" +
+			authors +
+			"</small></h5>";
+		if (typeof categories !== "undefined")
+			html1 += "<p class='media-desc media-desc-cat' >" + categories + "</p>";
+		html1 += "<p class='media-desc'>" + publication + "</p>";
+		html1 +=
+			"<p> <a href='" +
+			link +
+			"' class='button   media-link' target='_blank'>Buy Now</a></p>"; //<a href="#" class="button hollow tiny expanded">Buy Now</a>
 		bookCard.innerHTML = html1;
 		return bookCard;
 	};
@@ -81,7 +105,7 @@ var getmoredetails = function (searchTerm) {
 
 	var getMovieCard = function (movieData) {
 		console.log(movieData);
-		var m_imdbID = movieData.imdbID;
+		var m_imdbID = movieData.imdbID.trim();
 		var m_Title = movieData.Title;
 		var m_Year = movieData.Year;
 		var m_Type = movieData.Type;
@@ -96,16 +120,16 @@ var getmoredetails = function (searchTerm) {
 		else html1 += "	<img class='thumbnail1' src='" + m_poster + "' />";
 		console.log(html1);
 		html1 += "					</div> ";
-		html1 += "	<div class='media-object-section'>";
-		html1 += "	<h5>" + m_Title + "</h5> " + "<span >";
-		html1 += "						<p> ";
+		html1 += "	<div class='media-object-section movie-div'>";
+		html1 += "	<h5 class ='media-title'>" + m_Title + "</h5> " + "<span >";
+		html1 += "						<p class='media-desc'> ";
 		html1 += m_Year + " " + m_Type.charAt(0).toUpperCase() + m_Type.slice(1);
 		//	"							I'm going to improvise. Listen, there's something you should know about me... about inception. An idea is like a virus,resilient, highly contagious. The smallest seed of an idea can grow. It can grow to define or destroy you.";
 		html1 += "						</p>";
 		html1 +=
-			"<p><a href='https://www.imdb.com/title/'" +
+			"<p ><a class='button   media-link' href='https://www.imdb.com/title/" +
 			m_imdbID +
-			">IMDB Page</a></p>";
+			"' target = '_blank'>IMDB Page</a></p>";
 		html1 += "					</div>";
 		divElem.html(html1);
 
