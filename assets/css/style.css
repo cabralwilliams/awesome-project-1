@@ -152,17 +152,6 @@ body {
 	padding: 3px 10px;
 	margin-left: 50px;
 }
-.footer-menu {
-	background-color: var(--redwine);
-	margin-top: 10rem;
-	margin-bottom: 0;
-}
-
-.footer-menu li a,
-.footer-menu li span {
-	color: white;
-	font-weight: bold;
-}
 
 .thumbnail1 {
 	width: 5rem;
@@ -170,7 +159,29 @@ body {
 	border: 2px solid var(--gold);
 }
 
-footer {
+/* Saved Searches buttons */
+.btn {
+	border: none;
+	background-color: gray;
+	border-radius: 25px;
+	box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 6px 0px rgba(0, 0, 0, 0.2) 0px 1px 1px
+		0px;
+	color: hsl(0, 0%, 100%);
+	display: inline-block;
+	font-size: 22px;
+	line-height: 22px;
+	margin: 16px 16px 16px 20px;
+	padding: 14px 34px;
+	text-align: center;
+	cursor: pointer;
+}
+.btn:hover {
+	color: white;
+	background-color: black;
+}
+
+/* FOOTER STYLES START */
+main footer {
 	display: block;
 	text-align: center;
 	color: #ffffff;
