@@ -7,7 +7,7 @@
 - I WANT to be able to revisit previous topics searched without having to know their specific dates
 
 ## Application Functionality
-The application will show on initial load a featured event for that day and then also a clickable list of other events that took place.  Lower down on the page will be a list of saved events that the user had searched for in the past.  A button will be present to launch a modal that allows the user to select a day other than the current day to search.
+The application will show on initial load a featured event for that day and then also a clickable list of other events that took place.  Lower down on the page will be a list of saved events that the user had searched for in the past.  A button will allow the user to select a day other than the current day to search.
 
 The website is published at https://cabralwilliams.github.io/awesome-project-1/
 
@@ -16,7 +16,7 @@ The website is published at https://cabralwilliams.github.io/awesome-project-1/
 
 Built With HTML, CSS, Foundation, Java Script, Moment.js and Jquery.
 
-We use the https://history.muffinlabs.com/date/ API to retrieve history events  for specific day, https://www.googleapis.com/books API to search for books related to a specific event,  and http://www.omdbapi.com to looks for books related to search as well.
+We use the https://history.muffinlabs.com/date/ API to retrieve history events  for specific day, https://www.googleapis.com/books API to search for books related to a specific event,  and http://www.omdbapi.com to look for books related to the user search as well.
 
 We also use localStorage to store user manual searches.
 
