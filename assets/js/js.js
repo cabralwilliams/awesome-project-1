@@ -2,7 +2,9 @@ var dia = moment().format("M/D"); //todays date mm/dd
 var searches = []; //array to save user searches
 var googleBooksApiKey = "AIzaSyAQLZKoVW6Z2r8WwtXPTSdVZB-Qgp9n32o";
 //var for event listerner
-SButtonsEl = document.querySelector("#accordion");
+SButtonsEl = document.querySelector("#clicker");
+bookmarksEL = document.querySelector("#bookmarks");
+
 //initialize foundation framework
 $(document).foundation();
 
@@ -20,18 +22,24 @@ var loadpage = function () {
 		//if a search has been saved on local storage then
 		//loop over array to recreate saved searches buttons on the webpage
 		$.each(searches, function (index, searches) {
-			var liElem = document.createElement("li");
-			liElem.setAttribute("data-title", searches.title);
-			liElem.setAttribute("data-year", searches.year);
-			liElem.setAttribute("btn-type", "learn");
-			liElem.classList.add("secondary", "rounded-corners");
-			liElem.innerHTML = "<a href='#'>" + searches.title + "</a>";
-			var container = document.getElementById("bookmarks");
-			container.appendChild(liElem);
+			//display a li element for each saved search
+			createButtons(searches.title,searches.year);
 		});
 	}
 	gethistory(dia); //use to display data for today's date
 };
+
+//create buttons for saved searches
+var createButtons= function(ttitle, tyear){
+	var bElem = document.createElement("button");
+	bElem.setAttribute("data-title", ttitle);
+	bElem.setAttribute("data-year", tyear);
+	bElem.setAttribute("btn-type", "learn");
+	bElem.classList.add("btn");
+	bElem.textContent= ttitle;
+	var container = document.getElementById("bookmarks");
+	container.appendChild(bElem);
+}
 
 var appendClass = function (element, classToAdd) {
 	element.classList.add(classToAdd);
@@ -57,15 +65,8 @@ var buttonClickHandler = function (event) {
 			searches.push(eventDataObj);
 			//go to save on local storage
 			saveSearches();
-			//display button with saved search
-			var liElem = document.createElement("li");
-			liElem.setAttribute("data-title", eventDataObj.title);
-			liElem.setAttribute("data-year", eventDataObj.year);
-			liElem.setAttribute("btn-type", "learn");
-			liElem.classList.add("secondary", "rounded-corners");
-			liElem.innerHTML = "<a href='#'>" + eventDataObj.title + "</a>";
-			var container = document.getElementById("bookmarks");
-			container.appendChild(liElem);
+			//display a li element for each saved search
+			createButtons(eventDataObj.title, eventDataObj.year);			
 		} else {
 			//search on array if event already exist
 			var index = -1;
@@ -86,14 +87,9 @@ var buttonClickHandler = function (event) {
 				//go to save on local storage
 				saveSearches();
 				//display button with saved search
-				var liElem = document.createElement("li");
-				liElem.setAttribute("data-title", eventDataObj.title);
-				liElem.setAttribute("data-year", eventDataObj.year);
-				liElem.setAttribute("btn-type", "learn");
-				liElem.classList.add("secondary", "rounded-corners");
-				liElem.innerHTML = "<a href='#'>" + eventDataObj.title + "</a>";
-				var container = document.getElementById("bookmarks");
-				container.appendChild(liElem);
+				saveSearches();
+				//display a li element for each saved search
+				createButtons(eventDataObj.title, eventDataObj.year);				
 			}
 		}
 	}
@@ -230,8 +226,10 @@ var saveSearches = function () {
 	localStorage.setItem("searches", JSON.stringify(searches));
 };
 
-// add event listeners to form and button container
+// add event listeners to save and learn buttons
 SButtonsEl.addEventListener("click", buttonClickHandler);
+// add event listeners to saved search buttons
+bookmarksEL.addEventListener("click",buttonClickHandler);
 
 // load for the first time
 $(document).ready(function () {
