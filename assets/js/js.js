@@ -36,7 +36,7 @@ var createButtons= function(ttitle, tyear){
 	bElem.setAttribute("data-year", tyear);
 	bElem.setAttribute("btn-type", "learn");
 	bElem.classList.add("btn");
-	bElem.textContent= ttitle;
+	bElem.textContent= tyear+"-"+ttitle;
 	var container = document.getElementById("bookmarks");
 	container.appendChild(bElem);
 }
@@ -85,8 +85,6 @@ var buttonClickHandler = function (event) {
 				//save obj on array
 				searches.push(eventDataObj);
 				//go to save on local storage
-				saveSearches();
-				//display button with saved search
 				saveSearches();
 				//display a li element for each saved search
 				createButtons(eventDataObj.title, eventDataObj.year);				
@@ -190,24 +188,18 @@ var gethistory = function (dateEl) {
 					});
 				});
 			} else {
-				//api response returned errors
-				// call modal window to display errors
-				msgerror.textContent="Error: " + response.status+" "+response.statusText;
-				$( function() {
-				  $( "#dialog-message" ).dialog({
-					  modal: true,
-					  buttons: {
-						Ok: function() {
-						  $( this ).dialog( "close" );
-						}
-					  }
-				  });
-				}); //end modal
+				//api response returned errors, so call modal window to display errors
+				dispError("Error: " + response.status+" "+response.statusText);				
 			}
 		})
 		.catch(function (error) {
-			// call modal window to display errors
-			msgerror.textContent="Error: Unable to connect to history.muffinlabs.com/date/ API";
+			// call modal window to display conectivity error
+			dispError("Error: Unable to connect to history.muffinlabs.com/date/ API");			
+		});
+};
+//Display errors using modal
+var dispError =  function(etext){
+           msgerror.textContent= etext;
 			$( function() {
 			  $( "#dialog-message" ).dialog({
 				  modal: true,
@@ -218,9 +210,7 @@ var gethistory = function (dateEl) {
 				  }
 			  });
 			});
-		});
-};
-
+}
 //save array to local storage
 var saveSearches = function () {
 	localStorage.setItem("searches", JSON.stringify(searches));
@@ -243,6 +233,10 @@ $(document).ready(function () {
 		var selectedDate = $("#select-date").val();
 		var selectedDateM = moment(selectedDate, "M/D/YYYY");
 		var cday = selectedDateM.format("M/D");
+		if (!selectedDate){  //user did not select a day
+			dispError("please Select a day. Try it again")
+			return;
+		}
 		//remove elements from accordion so next date would be properly display
 		$(".accordion").accordion("destroy");
 		$(".ui-accordion-header").remove();
