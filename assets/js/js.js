@@ -101,33 +101,35 @@ var buttonClickHandler = function (event) {
 //load history for a specific day of the year
 var gethistory = function (dateEl) {
 	// format the weather api url by city
-	var apiUrl = "https://history.muffinlabs.com/date/" + dateEl;
+	//var apiUrl = "https://history.muffinlabs.com/date/" + dateEl;
+	var apiUrl = "https://en.wikipedia.org/api/rest_v1/feed/onthisday/events/"+dateEl;
 	// make a get request to url
 	fetch(apiUrl)
 		.then(function (response) {
 			// request was successful
 			if (response.ok) {
 				response.json().then(function (data) {
-					console.log(data.data);
+					console.log(data.events);
 					//display data as buttons
-					var allSearches = data.data.Events; //get only array events
-					var l =
+					//var allSearches = data.data.Events; //get only array events
+					var allSearches = data.events; //get only array events
+					    var l =
 						Math.floor(Math.random() * (allSearches.length - 1 - 0 + 1)) + 0;
-					line.textContent = "It Happened on " + data.date;
+					line.textContent = "It Happened on " + dateEl;
 					intro.textContent =
 						"On " +
-						data.date +
+						dateEl +
 						", " +
-						data.data.Events[l].year +
+						data.events[l].year +
 						": " +
-						data.data.Events[l].links[0].title;
-					description.textContent = data.data.Events[l].text;
-					//document.querySelector("#featuredLearn").setAttribute("data-title", data.data.Events[l].links[0].title);
+						data.events[l].pages[0].displaytitle;
+					description.textContent = data.events[l].text;
+					//event listener to learn more - redirect page
 					document
 						.querySelector("#featuredLearn")
 						.setAttribute(
 							"onclick",
-							'redirectPage("' + data.data.Events[l].links[0].title + '")'
+							'redirectPage("' + data.events[l].pages[0].displaytitle + '")'
 						);
 					document.querySelector("#accordion").innerHTML = "";
 					//Needed to activate accordion on Jquery
@@ -149,9 +151,9 @@ var gethistory = function (dateEl) {
 							var sectionEl = document.createElement("h3");
 							sectionEl.textContent =
 								" Year: " +
-								data.data.Events[index].year +
+								data.events[index].year +
 								": " +
-								data.data.Events[index].links[0].title;
+								data.events[index].pages[0].displaytitle;
 							var DivEl = document.createElement("div");
 							//DivEl.className = "cell small-12";
 							var pEl = document.createElement("p");
@@ -163,10 +165,10 @@ var gethistory = function (dateEl) {
 							buttonEl.setAttribute("btn-type", "save");
 							buttonEl.setAttribute(
 								"data-title",
-								data.data.Events[index].links[0].title
+								data.events[index].pages[0].displaytitle
 							);
-							buttonEl.setAttribute("data-year", data.data.Events[index].year);
-							buttonEl.setAttribute("data-descr", data.data.Events[index].text);
+							buttonEl.setAttribute("data-year",data.events[index].year);
+							buttonEl.setAttribute("data-descr",data.events[index].text);
 							buttonEl.textContent = "Save Search";
 							var LbuttonEl = document.createElement("button");
 							LbuttonEl.className =
@@ -174,11 +176,11 @@ var gethistory = function (dateEl) {
 							LbuttonEl.setAttribute("btn-type", "learn");
 							LbuttonEl.setAttribute(
 								"data-title",
-								data.data.Events[index].links[0].title
+								data.events[index].pages[0].displaytitle
 							);
 							LbuttonEl.textContent = "Learn More";
 							buttonDiv.append(buttonEl, LbuttonEl);
-							pEl.textContent = data.data.Events[index].text;
+							pEl.textContent = data.events[index].text;
 							DivEl.appendChild(pEl);
 							DivEl.appendChild(buttonDiv);
 							var container = document.getElementById("accordion");
