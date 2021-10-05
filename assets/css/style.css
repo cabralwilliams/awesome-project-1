@@ -1,7 +1,6 @@
 :root {
 	--primary: white;
 	--border-radius: 0.3rem;
-
 	--lightskyblue: #c4dbf6;
 	--gray: #8590aa;
 	--grain: #d7cec7;
@@ -162,7 +161,7 @@ body {
 /* Saved Searches buttons */
 .btn {
 	border: none;
-	background-color: gray;
+	background-color:  gray;
 	border-radius: 25px;
 	box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 6px 0px rgba(0, 0, 0, 0.2) 0px 1px 1px
 		0px;
@@ -181,10 +180,10 @@ body {
 }
 
 /* FOOTER STYLES START */
-main footer {
+footer {
 	display: block;
 	text-align: center;
-	color: #ffffff;
+	color: navajowhite;
 	background-color: var(--redwine);
 }
 
@@ -196,11 +195,11 @@ footer h4 {
 footer div {
 	line-height: 1;
 }
-/* END FOOTER STYLES */
-.copy {
-	color: var(--cardcolor);
-}
 
+.copy {
+	color: navajowhite;
+}
+/* END FOOTER STYLES */
 .secondpage-header {
 	border-bottom: none;
 	border: 5px solid var(--gold);

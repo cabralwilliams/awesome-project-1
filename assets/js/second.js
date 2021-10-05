@@ -2,7 +2,10 @@ var secondTitle = document.querySelector("#secondTitle");
 var testContainer = document.querySelector("#testContainer");
 var bookContainer = document.querySelector("#bookContainer");
 var googleBooksApiKey = "AIzaSyAQLZKoVW6Z2r8WwtXPTSdVZB-Qgp9n32o";
+
+//initialize foundation framework
 $(document).foundation();
+
 var titlize = function (inputString) {
 	//This function will return the input string with capital letters at all first letter locations
 	var outputString = "";
@@ -25,6 +28,21 @@ var replacePluses = function (inputString) {
 	return finalString;
 };
 
+//Display errors using modal
+var dispError =  function(etext){
+	msgerror.textContent= etext;
+	 $( function() {
+	   $( "#dialog-message" ).dialog({
+		   modal: true,
+		   buttons: {
+			 Ok: function() {
+			   $( this ).dialog( "close" );
+			 }
+		   }
+	   });
+	 });
+}
+//Search for books
 function getBooks(searchString) {
 	var booksUrl =
 		"https://www.googleapis.com/books/v1/volumes?q=" +
@@ -77,9 +95,8 @@ function getBooks(searchString) {
 			if (response.ok) {
 				return response.json();
 			} else {
-				throw new Error(
-					" Unable to connect to https://www.googleapis.com/books"
-				);
+				//call modal window to display conectivity error
+				dispError("Error: Unable to connect to https://www.googleapis.com/books API");								
 			}
 		})
 		.then(function (data) {
@@ -91,10 +108,10 @@ function getBooks(searchString) {
 			}
 		})
 		.catch(function (error) {
-			console.error(
-				"There has been a problem with your fetch operation:",
-				error
-			);
+			debugger;
+			//dispError("Error: " + error.status+" "+error.statusText);
+			//api response returned errors, so call modal window to display errors
+			dispError("Error: There has been a problem with your fetch operation");		
 		});
 }
 
@@ -149,7 +166,8 @@ var getmoredetails = function (searchTerm) {
 				//	$("#panel1").append(tabsContentDiv);
 			});
 		} else {
-			alert("Error: " + response.statusText);
+			//api response returned errors, so call modal window to display errors
+			dispError("Error: " + response.status+" "+response.statusText);	
 		}
 	});
 };
