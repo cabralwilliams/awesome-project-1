@@ -322,20 +322,27 @@ function eliminateUrlEntities(searchTerm) {
 }
 
 //Display errors using modal
-var dispError =  function(etext){
-	msgerror.textContent= etext;
-	 $( function() {
-	   $( "#dialog-message" ).dialog({
-		   modal: true,
-		   buttons: {
-			 Ok: function() {
-			   $( this ).dialog( "close" );
-			 }
-		   }
-	   });
-	 });
-}
+var dispError = function (etext) {
+	msgerror.textContent = etext;
+	$(function () {
+		$("#dialog-message").dialog({
+			modal: true,
+			buttons: {
+				Ok: function () {
+					$(this).dialog("close");
+				},
+			},
+		});
+	});
+};
 //Search for books
+function validateResponseFields(val) {
+	if (typeof val !== "undefined") {
+		return val;
+	}
+	return "";
+}
+
 function getBooks(searchString) {
 	var booksUrl =
 		"https://www.googleapis.com/books/v1/volumes?q=" +
@@ -345,23 +352,30 @@ function getBooks(searchString) {
 	var getBookCard = function (bookData) {
 		console.log(bookData);
 		var bookCard = document.createElement("div");
-		var title = bookData.volumeInfo.title;
-		var link = bookData.volumeInfo.infoLink;
-		var authors = bookData.volumeInfo.authors;
-		var categories = bookData.volumeInfo.categories;
-        var imgsrc;
-        if(bookData.volumeInfo.imageLinks) {
-            imgsrc = bookData.volumeInfo.imageLinks.hasOwnProperty("smallThumbnail") ? bookData.volumeInfo.imageLinks.smallThumbnail : null;
-        } else {
-            imgsrc = null;
-        }
+
+		var title = validateResponseFields(bookData.volumeInfo.title);
+		var link = validateResponseFields(bookData.volumeInfo.infoLink);
+		var authors = validateResponseFields(bookData.volumeInfo.authors);
+		var categories = validateResponseFields(bookData.volumeInfo.categories);
+		var imgsrc = "";
+		var imgsrc;
+		if (bookData.volumeInfo.imageLinks) {
+			imgsrc = bookData.volumeInfo.imageLinks.hasOwnProperty("smallThumbnail")
+				? bookData.volumeInfo.imageLinks.smallThumbnail
+				: "";
+		} else {
+			imgsrc = "";
+		}
+
+
 		var publisher = "";
 		var publishedDate = "";
-		if (typeof bookData.volumeInfo.publisher !== "undefined") {
+
+		if (validateResponseFields(bookData.volumeInfo.publisher) !== "") {
 			publisher = bookData.volumeInfo.publisher;
 		}
 
-		if (typeof bookData.volumeInfo.publishedDate !== "undefined") {
+		if (validateResponseFields(bookData.volumeInfo.publishedDate) !== "") {
 			publishedDate = bookData.volumeInfo.publishedDate;
 		}
 
@@ -371,24 +385,22 @@ function getBooks(searchString) {
 
 		bookCard.classList.add("column", "book-result");
 		var html1 = "";
-        if(imgsrc !== null) {
-            html1 += "<img class='thumbnail1' src='" + imgsrc + "' />";
-        } else {
-            html1 += "<img alt='No thumnail available' class='thumbnail1' />";
-        }
-		html1 +=
-			"<h5 class='media-title'>" +
-			title +
-			" <small>&nbsp; - &nbsp;" +
-			authors +
-			"</small></h5>";
-		if (typeof categories !== "undefined")
+ 
+		if (imgsrc !== "")
+			html1 += "<img class='thumbnail1' src='" + imgsrc + "' />";
+		if (title !== "") html1 += "<h5 class='media-title'>" + title;
+		if (authors !== "") " <small>&nbsp; - &nbsp;" + authors + "</small></h5>";
+
+		if (categories !== "")
+
 			html1 += "<p class='media-desc media-desc-cat' >" + categories + "</p>";
+
 		html1 += "<p class='media-desc'>" + publication + "</p>";
-		html1 +=
-			"<p> <a href='" +
-			link +
-			"' class='button   media-link' target='_blank'>Buy Now</a></p>"; //<a href="#" class="button hollow tiny expanded">Buy Now</a>
+		if (link !== "")
+			html1 +=
+				"<p> <a href='" +
+				link +
+				"' class='button   media-link' target='_blank'>Buy Now</a></p>"; //<a href="#" class="button hollow tiny expanded">Buy Now</a>
 		bookCard.innerHTML = html1;
 		return bookCard;
 	};
@@ -398,7 +410,9 @@ function getBooks(searchString) {
 				return response.json();
 			} else {
 				//call modal window to display conectivity error
-				dispError("Error: Unable to connect to https://www.googleapis.com/books API");								
+				dispError(
+					"Error: Unable to connect to https://www.googleapis.com/books API"
+				);
 			}
 		})
 		.then(function (data) {
@@ -414,7 +428,7 @@ function getBooks(searchString) {
             console.log(error);
 			//dispError("Error: " + error.status+" "+error.statusText);
 			//api response returned errors, so call modal window to display errors
-			dispError("Error: There has been a problem with your fetch operation");		
+			dispError("Error: There has been a problem with your fetch operation");
 		});
 }
 
@@ -455,32 +469,59 @@ var getmoredetails = function (searchTerm) {
 
 		return divElem;
 	};
-	fetch(omdbURL).then(function (response) {
-		// request was successful
-		if (response.ok) {
-			response.json().then(function (data) {
-				testContainer.innerHTML = "";
-				console.log(data);
-				console.log(Object.keys(data));
-                if(data.hasOwnProperty("Search")) {
-                    for (var i = 0; i < data.Search.length; i++) {
-                        var nextCard = getMovieCard(data.Search[i]);
-                        $("#panel1").append(nextCard);
-                    }
-                } else {
-                    var noticeDiv = $("<div>");
-                    var noticeHeader = $("<h3>");
-                    noticeHeader.text("Sorry, the searched match no visual media.");
-                    noticeDiv.append(noticeHeader);
-                    $("#panel1").append(noticeDiv);
-                }
-				//	$("#panel1").append(tabsContentDiv);
-			});
-		} else {
+
+	fetch(omdbURL)
+		.then(function (response) {
+			// request was successful
+			if (response.ok) {
+				console.log("movies response" + omdbURL);
+				console.log(response);
+				return response.json();
+			} else {
+				//call modal window to display conectivity error
+				dispError(
+					"Error: Unable to connect to http://www.omdbapi.com/"
+				);
+			}
+		})
+		.then(function (data) {
+			console.log("movies data");
+			console.log(data);
+			if (data.Response !== "False") {
+				for (var i = 0; i < data.Search.length; i++) {
+					var nextCard = getMovieCard(data.Search[i]);
+					$("#panel1").append(nextCard);
+				}
+			}
+			//	$("#panel1").append(tabsContentDiv);
+		})
+		.catch(function (error) {
+			debugger;
+			//dispError("Error: " + error.status+" "+error.statusText);
+
 			//api response returned errors, so call modal window to display errors
-			dispError("Error: " + response.status+" "+response.statusText);	
-		}
-	});
+			dispError(
+				"Error: There has been a problem with your movie fetch operation"
+			);
+		});
+
+	// 	if (response.ok) {
+	// 		response.json()
+	// 		.then(function (data) {
+	// 			testContainer.innerHTML = "";
+	// 			console.log(data);
+	// 			console.log(Object.keys(data));
+	// 			for (var i = 0; i < data.Search.length; i++) {
+	// 				var nextCard = getMovieCard(data.Search[i]);
+	// 				$("#panel1").append(nextCard);
+	// 			}
+	// 			//	$("#panel1").append(tabsContentDiv);
+	// 		});
+	// 	} else {
+	// 		//api response returned errors, so call modal window to display errors
+	// 		dispError("Error: " + response.status+" "+response.statusText);
+	// 	}
+	// });
 };
 
 var getSearchData = function () {
