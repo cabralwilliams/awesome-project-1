@@ -424,9 +424,6 @@ function getBooks(searchString) {
 			}
 		})
 		.catch(function (error) {
-			//debugger;
-            console.log(error);
-			//dispError("Error: " + error.status+" "+error.statusText);
 			//api response returned errors, so call modal window to display errors
 			dispError("Error: There has been a problem with your fetch operation");
 		});
@@ -435,10 +432,9 @@ function getBooks(searchString) {
 var getmoredetails = function (searchTerm) {
 	// format the github api url
 	var omdbURL = "https://www.omdbapi.com/?s=" + searchTerm + "&apikey=a6a19b04";
-	var bookURL = "http://openlibrary.org/search.json?q=" + searchTerm;
 
 	var getMovieCard = function (movieData) {
-		console.log(movieData);
+		//console.log(movieData);
 		var m_imdbID = movieData.imdbID.trim();
 		var m_Title = movieData.Title;
 		var m_Year = movieData.Year;
@@ -452,12 +448,11 @@ var getmoredetails = function (searchTerm) {
 		if (m_poster == "N/A")
 			html1 += "	<img class='thumbnail1' src='../images/nomovie.jpg' />";
 		else html1 += "	<img class='thumbnail1' src='" + m_poster + "' />";
-		console.log(html1);
+		//console.log(html1);
 
 		html1 += "	<h5 class ='media-title'>" + m_Title + "</h5> " + "<span >";
 		html1 += "						<p class='media-desc'> ";
 		html1 += m_Year + " " + m_Type.charAt(0).toUpperCase() + m_Type.slice(1);
-		//	"							I'm going to improvise. Listen, there's something you should know about me... about inception. An idea is like a virus,resilient, highly contagious. The smallest seed of an idea can grow. It can grow to define or destroy you.";
 		html1 += "						</p>";
 		html1 +=
 			"<p ><a class='button   media-link' href='https://www.imdb.com/title/" +
@@ -500,32 +495,11 @@ var getmoredetails = function (searchTerm) {
 			//	$("#panel1").append(tabsContentDiv);
 		})
 		.catch(function (error) {
-			debugger;
-			//dispError("Error: " + error.status+" "+error.statusText);
-
 			//api response returned errors, so call modal window to display errors
 			dispError(
 				"Error: There has been a problem with your movie fetch operation"
 			);
 		});
-
-	// 	if (response.ok) {
-	// 		response.json()
-	// 		.then(function (data) {
-	// 			testContainer.innerHTML = "";
-	// 			console.log(data);
-	// 			console.log(Object.keys(data));
-	// 			for (var i = 0; i < data.Search.length; i++) {
-	// 				var nextCard = getMovieCard(data.Search[i]);
-	// 				$("#panel1").append(nextCard);
-	// 			}
-	// 			//	$("#panel1").append(tabsContentDiv);
-	// 		});
-	// 	} else {
-	// 		//api response returned errors, so call modal window to display errors
-	// 		dispError("Error: " + response.status+" "+response.statusText);
-	// 	}
-	// });
 };
 
 var getSearchData = function () {
