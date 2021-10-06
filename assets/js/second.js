@@ -446,7 +446,7 @@ var getmoredetails = function (searchTerm) {
 
         var html1 = "";
 		if (m_poster == "N/A")
-			html1 += "	<img class='thumbnail1' alt='No Image Found' />";
+			html1 += "<img class='thumbnail1' src='./assets/images/nomovie.jpg' />";
 		else html1 += "	<img class='thumbnail1' src='" + m_poster + "' />";
 		//console.log(html1);
 
