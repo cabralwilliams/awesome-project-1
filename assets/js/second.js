@@ -434,7 +434,7 @@ function getBooks(searchString) {
 
 var getmoredetails = function (searchTerm) {
 	// format the github api url
-	var omdbURL = "http://www.omdbapi.com/?s=" + searchTerm + "&apikey=a6a19b04";
+	var omdbURL = "https://www.omdbapi.com/?s=" + searchTerm + "&apikey=a6a19b04";
 	var bookURL = "http://openlibrary.org/search.json?q=" + searchTerm;
 
 	var getMovieCard = function (movieData) {
