@@ -159,7 +159,7 @@ body {
 }
 
 /* Saved Searches buttons */
-.btn {
+/* .btn {
 	border: none;
 	background-color:  gray;
 	border-radius: 25px;
@@ -177,6 +177,24 @@ body {
 .btn:hover {
 	color: white;
 	background-color: black;
+} */
+
+#bookmarks button {
+	font-size: none;
+	font-size: 0.8rem;
+	margin: 0.5rem;
+	font-family: "Source Sans Pro", sans-serif;
+	color: var(--gold);
+	background: linear-gradient(
+		180deg,
+		rgba(234, 238, 241, 1) 0%,
+		rgba(177, 189, 203, 1) 100%
+	);
+	border: 3px solid var(--gold);
+	padding: 0.2rem;
+	border-radius: var(--border-radius);
+	color: var(--textColor);
+	font-weight: 600;
 }
 
 /* FOOTER STYLES START */
@@ -306,4 +324,21 @@ footer div {
 
 .media-desc-cat {
 	color: var(--redwine);
+}
+#bookmarks button {
+	font-size: none;
+	font-size: 0.8rem;
+	margin: 0.5rem;
+	font-family: "Source Sans Pro", sans-serif;
+	color: var(--gold);
+	background: linear-gradient(
+		180deg,
+		rgba(234, 238, 241, 1) 0%,
+		rgba(177, 189, 203, 1) 100%
+	);
+	border: 2px solid var(--gold);
+	padding: 0.2rem;
+	border-radius: var(--border-radius);
+	color: var(--textColor);
+	font-weight: 600;
 }
