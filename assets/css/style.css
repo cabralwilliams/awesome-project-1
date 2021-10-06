@@ -296,7 +296,7 @@ footer div {
 	color: var(--gold);
 }
 
-.bookContainer .column {
+.bookContainer .column, .videoContainer .column {
 	margin: top 1.5rem;
 }
 

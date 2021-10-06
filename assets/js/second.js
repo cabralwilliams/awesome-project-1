@@ -389,7 +389,7 @@ function getBooks(searchString) {
 		if (imgsrc !== "")
 			html1 += "<img class='thumbnail1' src='" + imgsrc + "' />";
 		if (title !== "") html1 += "<h5 class='media-title'>" + title;
-		if (authors !== "") " <small>&nbsp; - &nbsp;" + authors + "</small></h5>";
+		if (authors !== "") html1 += " <small>&nbsp; - &nbsp;" + authors + "</small></h5>";
 
 		if (categories !== "")
 
@@ -446,15 +446,14 @@ var getmoredetails = function (searchTerm) {
 		var m_author = movieData.author;
 		var m_poster = movieData.Poster;
 		var divElem = $("<div>");
-		divElem.addClass("media-object stack-for-small");
+		divElem.addClass("column book-result");
 
-		var html1 = "<div class='media-object-section'>";
+        var html1 = "";
 		if (m_poster == "N/A")
 			html1 += "	<img class='thumbnail1' src='../images/nomovie.jpg' />";
 		else html1 += "	<img class='thumbnail1' src='" + m_poster + "' />";
 		console.log(html1);
-		html1 += "					</div> ";
-		html1 += "	<div class='media-object-section movie-div'>";
+
 		html1 += "	<h5 class ='media-title'>" + m_Title + "</h5> " + "<span >";
 		html1 += "						<p class='media-desc'> ";
 		html1 += m_Year + " " + m_Type.charAt(0).toUpperCase() + m_Type.slice(1);
@@ -464,7 +463,6 @@ var getmoredetails = function (searchTerm) {
 			"<p ><a class='button   media-link' href='https://www.imdb.com/title/" +
 			m_imdbID +
 			"' target = '_blank'>IMDB Page</a></p>";
-		html1 += "					</div>";
 		divElem.html(html1);
 
 		return divElem;
@@ -490,7 +488,7 @@ var getmoredetails = function (searchTerm) {
 			if (data.Response !== "False") {
 				for (var i = 0; i < data.Search.length; i++) {
 					var nextCard = getMovieCard(data.Search[i]);
-					$("#panel1").append(nextCard);
+					$(".videoContainer").append(nextCard);
 				}
 			}
 			//	$("#panel1").append(tabsContentDiv);
