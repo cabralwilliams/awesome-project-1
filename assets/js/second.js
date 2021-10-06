@@ -350,7 +350,7 @@ function getBooks(searchString) {
 		"&key=" +
 		googleBooksApiKey;
 	var getBookCard = function (bookData) {
-		console.log(bookData);
+		//console.log(bookData);
 		var bookCard = document.createElement("div");
 
 		var title = validateResponseFields(bookData.volumeInfo.title);
@@ -472,8 +472,8 @@ var getmoredetails = function (searchTerm) {
 		.then(function (response) {
 			// request was successful
 			if (response.ok) {
-				console.log("movies response" + omdbURL);
-				console.log(response);
+				//console.log("movies response" + omdbURL);
+				//console.log(response);
 				return response.json();
 			} else {
 				//call modal window to display conectivity error
@@ -483,14 +483,20 @@ var getmoredetails = function (searchTerm) {
 			}
 		})
 		.then(function (data) {
-			console.log("movies data");
-			console.log(data);
+			//console.log("movies data");
+			//console.log(data);
 			if (data.Response !== "False") {
 				for (var i = 0; i < data.Search.length; i++) {
 					var nextCard = getMovieCard(data.Search[i]);
 					$(".videoContainer").append(nextCard);
 				}
-			}
+			} else {
+                var noticeDiv = $("<div>");
+                var noticeHeader = $("<h3>");
+                noticeHeader.text("Sorry.  There were no visual media hits for your search.");
+                noticeDiv.append(noticeHeader);
+                $(".videoContainer").append(noticeDiv);
+            }
 			//	$("#panel1").append(tabsContentDiv);
 		})
 		.catch(function (error) {
