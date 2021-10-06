@@ -11,7 +11,7 @@ The application will show on initial load a featured event for that day and then
 
 The website is published at https://cabralwilliams.github.io/awesome-project-1/
 
-![image](https://user-images.githubusercontent.com/88918693/136124651-e00044e2-3dad-4127-b886-dad124029785.png)
+![image](https://user-images.githubusercontent.com/88918693/136280801-7974bfa1-e6a4-4a06-a649-11b96c199f09.png)
 
 See a demo
 https://watch.screencastify.com/v/nggWdgaB6746QUG1NspP
