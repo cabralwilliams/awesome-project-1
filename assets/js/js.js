@@ -269,10 +269,6 @@ $(document).ready(function () {
 });
 
 function displayExtract(t, dateEl) {
-	console.log(t);
-	console.log(t.getAttribute("data-extract"));
-	console.log(t.getAttribute("data-year"));
-	console.log(t.getAttribute("data-normTitle"));
 	//var dateEl = t.getAttribute("data-year");
 	var extract = t.getAttribute("data-extract");
 	var normTitle = t.getAttribute("data-normTitle");
