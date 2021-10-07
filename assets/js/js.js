@@ -6,7 +6,6 @@ SButtonsEl = document.querySelector("#clicker");
 bookmarksEL = document.querySelector("#bookmarks");
 clearEL = document.querySelector("#clearHistory");
 
-
 //initialize foundation framework
 $(document).foundation();
 
@@ -25,23 +24,23 @@ var loadpage = function () {
 		//loop over array to recreate saved searches buttons on the webpage
 		$.each(searches, function (index, searches) {
 			//display a li element for each saved search
-			createButtons(searches.title,searches.year);
+			createButtons(searches.title, searches.year);
 		});
 	}
 	gethistory(dia); //use to display data for today's date
 };
 
 //create buttons for saved searches
-var createButtons= function(ttitle, tyear){
+var createButtons = function (ttitle, tyear) {
 	var bElem = document.createElement("button");
 	bElem.setAttribute("data-title", ttitle);
 	bElem.setAttribute("data-year", tyear);
 	bElem.setAttribute("btn-type", "learn");
 	bElem.classList.add("btn");
-	bElem.textContent= tyear+"-"+ttitle;
+	bElem.textContent = tyear + "-" + ttitle;
 	var container = document.getElementById("bookmarks");
 	container.appendChild(bElem);
-}
+};
 
 var appendClass = function (element, classToAdd) {
 	element.classList.add(classToAdd);
@@ -68,7 +67,7 @@ var buttonClickHandler = function (event) {
 			//go to save on local storage
 			saveSearches();
 			//display a li element for each saved search
-			createButtons(eventDataObj.title, eventDataObj.year);			
+			createButtons(eventDataObj.title, eventDataObj.year);
 		} else {
 			//search on array if event already exist
 			var index = -1;
@@ -89,7 +88,7 @@ var buttonClickHandler = function (event) {
 				//go to save on local storage
 				saveSearches();
 				//display a li element for each saved search
-				createButtons(eventDataObj.title, eventDataObj.year);				
+				createButtons(eventDataObj.title, eventDataObj.year);
 			}
 		}
 	}
@@ -104,7 +103,8 @@ var buttonClickHandler = function (event) {
 var gethistory = function (dateEl) {
 	// format the weather api url by city
 	//var apiUrl = "https://history.muffinlabs.com/date/" + dateEl;
-	var apiUrl = "https://en.wikipedia.org/api/rest_v1/feed/onthisday/events/"+dateEl;
+	var apiUrl =
+		"https://en.wikipedia.org/api/rest_v1/feed/onthisday/events/" + dateEl;
 	// make a get request to url
 	fetch(apiUrl)
 		.then(function (response) {
@@ -115,23 +115,31 @@ var gethistory = function (dateEl) {
 					//display data as buttons
 					//var allSearches = data.data.Events; //get only array events
 					var allSearches = data.events; //get only array events
-					    var l =
+<<<<<<< HEAD
+=======
+					var l =
 						Math.floor(Math.random() * (allSearches.length - 1 - 0 + 1)) + 0;
+>>>>>>> 5a794f2ad064005dabdc328dd10abf95874f193d
 					line.textContent = "It Happened on " + dateEl;
 					intro.innerHTML =
 						"On " +
 						dateEl +
 						", " +
-						data.events[l].year +
+						data.events[0].year +
 						": " +
+<<<<<<< HEAD
+						data.events[0].pages[0].displaytitle;
+					description.textContent = data.events[0].pages[0].extract;
+=======
 						data.events[l].pages[0].displaytitle;
-					description.textContent = data.events[l].text;
+					description.textContent = data.events[l].pages[0].extract;
+>>>>>>> 5a794f2ad064005dabdc328dd10abf95874f193d
 					//event listener to learn more - redirect page
 					document
 						.querySelector("#featuredLearn")
 						.setAttribute(
 							"onclick",
-							'redirectPage("' + data.events[l].pages[0].normalizedtitle + '")'
+							'redirectPage("' + data.events[0].pages[0].normalizedtitle + '")'
 						);
 					document.querySelector("#accordion").innerHTML = "";
 					//Needed to activate accordion on Jquery
@@ -148,9 +156,16 @@ var gethistory = function (dateEl) {
 					});
 					//loop over array to recreate search for that day on the webpage
 					$.each(allSearches, function (index, allSearches) {
-						if (index !== l) {
+						
 							//create entries for each event
 							var sectionEl = document.createElement("h3");
+							var extract = data.events[index].pages[0].extract;
+							sectionEl.setAttribute("data-extract", extract);
+							sectionEl.setAttribute("data-year", data.events[index].year);
+							sectionEl.setAttribute(
+								"data-normTitle",
+								data.events[index].pages[0].normalizedtitle
+							);
 							sectionEl.innerHTML =
 								" Year: " +
 								data.events[index].year +
@@ -169,8 +184,8 @@ var gethistory = function (dateEl) {
 								"data-title",
 								data.events[index].pages[0].normalizedtitle
 							);
-							buttonEl.setAttribute("data-year",data.events[index].year);
-							buttonEl.setAttribute("data-descr",data.events[index].text);
+							buttonEl.setAttribute("data-year", data.events[index].year);
+							buttonEl.setAttribute("data-descr", data.events[index].text);
 							buttonEl.textContent = "Save Search";
 							var LbuttonEl = document.createElement("button");
 							LbuttonEl.className =
@@ -188,48 +203,60 @@ var gethistory = function (dateEl) {
 							var container = document.getElementById("accordion");
 							container.appendChild(sectionEl);
 							container.appendChild(DivEl);
+
+							sectionEl.addEventListener("click", function (event) {
+								displayExtract(this, dateEl);
+							});
+<<<<<<< HEAD
+						
+=======
 						}
+>>>>>>> 5a794f2ad064005dabdc328dd10abf95874f193d
 					});
 				});
 			} else {
 				//api response returned errors, so call modal window to display errors
-				dispError("Error: " + response.status+" "+response.statusText);				
+				dispError("Error: " + response.status + " " + response.statusText);
 			}
 		})
 		.catch(function (error) {
 			// call modal window to display conectivity error
-			dispError("Error: Unable to connect to history.muffinlabs.com/date/ API");			
+<<<<<<< HEAD
+			dispError("Error: Unable to connect to en.wikipedia.org/api/rest_v1/feed/onthisday/events/ API");
+=======
+			dispError("Error: Unable to connect to history.muffinlabs.com/date/ API");
+>>>>>>> 5a794f2ad064005dabdc328dd10abf95874f193d
 		});
 };
 //Display errors using modal
-var dispError =  function(etext){
-           msgerror.textContent= etext;
-			$( function() {
-			  $( "#dialog-message" ).dialog({
-				  modal: true,
-				  buttons: {
-					Ok: function() {
-					  $( this ).dialog( "close" );
-					}
-				  }
-			  });
-			});
-}
+var dispError = function (etext) {
+	msgerror.textContent = etext;
+	$(function () {
+		$("#dialog-message").dialog({
+			modal: true,
+			buttons: {
+				Ok: function () {
+					$(this).dialog("close");
+				},
+			},
+		});
+	});
+};
 //save array to local storage
 var saveSearches = function () {
 	localStorage.setItem("searches", JSON.stringify(searches));
 };
 //clear saved searches
 var clearSearches = function () {
-	searches=[];  //clear array
+	searches = []; //clear array
 	localStorage.setItem("searches", JSON.stringify(searches)); //empty local storage
-	$(".btn").remove(); //remove buttons 
+	$(".btn").remove(); //remove buttons
 };
 
 // add event listeners to save and learn buttons
 SButtonsEl.addEventListener("click", buttonClickHandler);
 // add event listeners to saved search buttons
-bookmarksEL.addEventListener("click",buttonClickHandler);
+bookmarksEL.addEventListener("click", buttonClickHandler);
 //delete saved searches
 clearEL.addEventListener("click", clearSearches);
 
@@ -245,8 +272,9 @@ $(document).ready(function () {
 		var selectedDate = $("#select-date").val();
 		var selectedDateM = moment(selectedDate, "M/D/YYYY");
 		var cday = selectedDateM.format("M/D");
-		if (!selectedDate){  //user did not select a day
-			dispError("please Select a day. Try it again")
+		if (!selectedDate) {
+			//user did not select a day
+			dispError("please Select a day. Try it again");
 			return;
 		}
 		//remove elements from accordion so next date would be properly display
@@ -259,4 +287,20 @@ $(document).ready(function () {
 	loadpage();
 });
 
-
+function displayExtract(t, dateEl) {
+	console.log(t);
+	console.log(t.getAttribute("data-extract"));
+	console.log(t.getAttribute("data-year"));
+	console.log(t.getAttribute("data-normTitle"));
+	//var dateEl = t.getAttribute("data-year");
+	var extract = t.getAttribute("data-extract");
+	var normTitle = t.getAttribute("data-normTitle");
+	var year = t.getAttribute("data-year");
+	line.textContent = "It Happened on " + dateEl;
+	intro.innerHTML = "On " + dateEl + ", " + year + ": " + normTitle;
+	description.textContent = extract;
+	//event listener to learn more - redirect page
+	document
+		.querySelector("#featuredLearn")
+		.setAttribute("onclick", 'redirectPage("' + normTitle + '")');
+}
