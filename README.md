@@ -9,7 +9,7 @@
 ## Application Functionality
 The application will show on initial load a featured event for that day and then also a clickable list of other events that took place.  Lower down on the page will be a list of saved events that the user had searched for in the past.  A button will allow the user to select a day other than the current day to search.
 
-The website is published at https://cabralwilliams.github.io/awesome-project-1/
+The website is published at https://cabralwilliams.github.io/discover-history/
 
 ![image](https://user-images.githubusercontent.com/88918693/136280801-7974bfa1-e6a4-4a06-a649-11b96c199f09.png)
 
