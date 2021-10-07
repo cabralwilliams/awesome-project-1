@@ -111,15 +111,10 @@ var gethistory = function (dateEl) {
 			// request was successful
 			if (response.ok) {
 				response.json().then(function (data) {
-					console.log(data.events);
+					//console.log(data.events);
 					//display data as buttons
 					//var allSearches = data.data.Events; //get only array events
 					var allSearches = data.events; //get only array events
-<<<<<<< HEAD
-=======
-					var l =
-						Math.floor(Math.random() * (allSearches.length - 1 - 0 + 1)) + 0;
->>>>>>> 5a794f2ad064005dabdc328dd10abf95874f193d
 					line.textContent = "It Happened on " + dateEl;
 					intro.innerHTML =
 						"On " +
@@ -127,13 +122,8 @@ var gethistory = function (dateEl) {
 						", " +
 						data.events[0].year +
 						": " +
-<<<<<<< HEAD
 						data.events[0].pages[0].displaytitle;
 					description.textContent = data.events[0].pages[0].extract;
-=======
-						data.events[l].pages[0].displaytitle;
-					description.textContent = data.events[l].pages[0].extract;
->>>>>>> 5a794f2ad064005dabdc328dd10abf95874f193d
 					//event listener to learn more - redirect page
 					document
 						.querySelector("#featuredLearn")
@@ -205,13 +195,8 @@ var gethistory = function (dateEl) {
 							container.appendChild(DivEl);
 
 							sectionEl.addEventListener("click", function (event) {
-								displayExtract(this, dateEl);
-							});
-<<<<<<< HEAD
-						
-=======
-						}
->>>>>>> 5a794f2ad064005dabdc328dd10abf95874f193d
+							displayExtract(this, dateEl);
+							});						
 					});
 				});
 			} else {
@@ -221,11 +206,7 @@ var gethistory = function (dateEl) {
 		})
 		.catch(function (error) {
 			// call modal window to display conectivity error
-<<<<<<< HEAD
 			dispError("Error: Unable to connect to en.wikipedia.org/api/rest_v1/feed/onthisday/events/ API");
-=======
-			dispError("Error: Unable to connect to history.muffinlabs.com/date/ API");
->>>>>>> 5a794f2ad064005dabdc328dd10abf95874f193d
 		});
 };
 //Display errors using modal
@@ -299,8 +280,4 @@ function displayExtract(t, dateEl) {
 	line.textContent = "It Happened on " + dateEl;
 	intro.innerHTML = "On " + dateEl + ", " + year + ": " + normTitle;
 	description.textContent = extract;
-	//event listener to learn more - redirect page
-	document
-		.querySelector("#featuredLearn")
-		.setAttribute("onclick", 'redirectPage("' + normTitle + '")');
 }
